@@ -23,9 +23,15 @@ mkdir /tmp/installFiles
 cd /tmp/installFiles
 git clone https://github.com/Jocomol/wheaterstation-install.git &> /dev/null
 
+#making file structure
+mkdir /var/wheaterstation
+mkdir /var/wheaterstation/data
+mkdir /var/wheaterstation/scripts
+touch /var/wheaterstation/data/wheaterdb.db
+
 #configuring software
-	#execute SQL scripts
-	#network config
+sqlite3 /var/wheaterstation/data/wheater.db < /tmp/installFiles/wheaterstation-install/script/createDB.sql
+
 
 #making ssh keys
 echo "Making ssh keys"
@@ -59,4 +65,5 @@ then
 else
         init 6
 fi
+
 
