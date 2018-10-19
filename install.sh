@@ -15,6 +15,7 @@ fi
 
 #install software
 echo "Installing required software"
+apt-get update
 apt-get install git tree openssh-server sqlite3 apache2 php7.0 php7.0-sqlite3 figlet -y &> /dev/null
 echo "Software installed"
 
@@ -27,11 +28,11 @@ git clone https://github.com/Jocomol/wheaterstation-install.git &> /dev/null
 mkdir /var/wheaterstation
 mkdir /var/wheaterstation/data
 mkdir /var/wheaterstation/scripts
+ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheaterdb.db
 
 #configuring software
-sqlite3 /var/wheaterstation/data/wheater.db < /tmp/installFiles/wheaterstation-install/script/createDB.sql
-
+sqlite3 /var/wheaterstation/data/wheater.db < /tmp/installFiles/wheaterstation-install/install_script/createDB.sql
 
 #making ssh keys
 echo "Making ssh keys"
@@ -55,7 +56,6 @@ then
 else
         rm config
 fi
-
 
 #restart
 echo "Now Restarting"
