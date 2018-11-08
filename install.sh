@@ -16,7 +16,7 @@ fi
 #install software
 echo "Installing required software"
 apt-get update
-apt-get install git tree openssh-server sqlite3 apache2 php7.0 php7.0-sqlite3 figlet -y &> /dev/null
+apt-get install git tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
 echo "Software installed"
 
 #git pull für scripts
@@ -28,8 +28,24 @@ git clone https://github.com/Jocomol/wheaterstation-install.git &> /dev/null
 mkdir /var/wheaterstation
 mkdir /var/wheaterstation/data
 mkdir /var/wheaterstation/scripts
+mkdir /var/wheaterstation/hardware
+ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820
 ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheaterdb.db
+
+#configuring hardware
+#ds1820
+lsmod
+modprobe wire
+modprobe w1-gpio
+modporbe w1-therm
+echo "wire" >> /etc/modules
+echo "w1-gpio" >> /etc/modules
+echo "w1-therm" >> /etc/modules
+echo "#1-Wire ds1820" >> /boot/config.txt
+echo "dtoverlay=w1-gpio" >> /boot/config.txt
+echo "gpiopin=4" >> /boot/config.txt
+
 
 #configuring software
 sqlite3 /var/wheaterstation/data/wheater.db < /tmp/installFiles/wheaterstation-install/install_script/createDB.sql
