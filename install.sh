@@ -15,14 +15,9 @@ fi
 
 #install software
 echo "Installing required software"
-apt-get update
-apt-get install git tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+apt update
+apt install tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
 echo "Software installed"
-
-#git pull für scripts
-mkdir /tmp/installFiles
-cd /tmp/installFiles
-git clone https://github.com/Jocomol/wheaterstation-install.git &> /dev/null
 
 #making file structure
 mkdir /var/wheaterstation
@@ -48,7 +43,7 @@ echo "gpiopin=4" >> /boot/config.txt
 
 
 #configuring software
-sqlite3 /var/wheaterstation/data/wheater.db < /tmp/installFiles/wheaterstation-install/install_script/createDB.sql
+sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
 
 #making ssh keys
 echo "Making ssh keys"
@@ -64,7 +59,6 @@ fi
 echo "The ssh keys are stored in /home/pi/.ssh"
 
 #cleanup
-rm -r /tmp/installFiles
 
 if [ $# == 1 ] && [ "$1" == "-t" ];
 then
