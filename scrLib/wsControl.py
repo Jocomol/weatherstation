@@ -7,11 +7,19 @@ from object import object
 import pytemperature
 
 class controller():
-    ##Create Objects
-    logger = logger()
-    logger.writeLog(self, "logger createds")
-    thermo = thermo("Thermometer", logger)
-    dbConnector = dbConnector("DBConnector",logger)
+
+    name = ""
+    logger = None
+    thermo = None
+    dbConnector = None
+
+    def __init__(self, name, logger):
+        self.name = "Controller"
+        ##Create Objects
+        self.logger = logger()
+        self.logger.writeLog(self, "logger created")
+        self.thermo = thermo("Thermometer", logger)
+        self.dbConnector = dbConnector("DBConnector",logger)
 
     def tempMeassure(self):
         tempData = self.thermo.read()
@@ -41,6 +49,9 @@ class controller():
     def getTime(self):
         now = datetime.datetime.now()
         return str(now.isoformat())
+
+    def getName(self):
+        return self.name
 
 ##TESTING
 for i in range(10):
