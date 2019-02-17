@@ -18,7 +18,7 @@ echo "Installing required software"
 ##TESTING
 echo "No software installed because of Testing"
 #apt update
-#apt install python3 tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+#apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
 ##
 echo "Software installed"
 
@@ -52,9 +52,12 @@ echo "gpiopin=4" >> /boot/config.txt
 #configuring software
 #Database
 sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
+
 #scrLib
+pip3 install pytemperature
 cp scrLib/wsControl.py /var/wheaterstation/scripts
 cp scrLib/thermo.py /var/wheaterstation/scripts
+
 #making ssh keys
 echo "Making ssh keys"
 if [ ! -f /home/pi/.ssh/authorized_keys ]; then
