@@ -12,5 +12,5 @@ class thermo(wsPart):
         fileobject = open(self.file)
         filecontent = fileobject.read()
         fileobject.close()
-        self.logger.writeLog(self,message="Completed Meassurement")
+        self.logger.writeLog(sender=self,message="Completed Meassurement")
         return filecontent
