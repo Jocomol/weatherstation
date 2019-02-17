@@ -27,14 +27,17 @@ mkdir /var/wheaterstation/hardware
 mkdir /var/wheaterstation/frontend
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/wheaterstation/frontend
-touch /var/wheaterstation/data/wheaterdb.db
+touch /var/wheaterstation/data/wheater.db
+
+#move additonal files
+cp files/motd/* /etc/update-motd.d/
 
 #configuring hardware
 #ds1820
 lsmod
 modprobe wire
 modprobe w1-gpio
-modporbe w1-therm
+modprobe w1-therm
 echo "wire" >> /etc/modules
 echo "w1-gpio" >> /etc/modules
 echo "w1-therm" >> /etc/modules
