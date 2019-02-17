@@ -25,7 +25,10 @@ def tempMeassure():
 def control():
     dataArray = []
     dataArray.append(getTime())
-    dataArray.append(tempMeassure())
+    tempArray = tempMeassure()
+    dataArray.append(tempArray[0])
+    dataArray.append(tempArray[1])
+    dataArray.append(tempArray[2])
     dbConnector.DBInsertMeasurement(dataArray)
 
 def getTime():
