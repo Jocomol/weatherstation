@@ -1,5 +1,5 @@
 
-class object:
+class wsPart(object):
     logger = None
     name = ""
     def __init__(self, name, logger):

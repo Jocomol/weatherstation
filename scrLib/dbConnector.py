@@ -1,6 +1,6 @@
 import sqlite3
-from object import object
-class dbConnector(object):
+from wsPart import wsPart
+class dbConnector(wsPart):
     def __init__(self, name, logger):
         super(name, logger).__init__()
 

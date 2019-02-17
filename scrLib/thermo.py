@@ -1,5 +1,5 @@
 import os, sys
-from object import object
+from wsPart import wsPart
 class thermo:
     functional = False
     file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave'

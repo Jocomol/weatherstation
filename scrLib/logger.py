@@ -1,5 +1,5 @@
 import datetime
-from object import object
+from wsPart import wsPart
 class logger():
     logfile = "/var/log/wheaterstation.log"
     name = "Logger"

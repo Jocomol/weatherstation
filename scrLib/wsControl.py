@@ -3,7 +3,7 @@ import datetime
 from thermo import thermo
 from dbConnector import dbConnector
 from logger import logger
-from object import object
+from wsPart import wsPart
 import pytemperature
 
 class controller():
