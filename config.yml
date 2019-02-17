@@ -3,5 +3,10 @@
 #Contact: joelmeier08@gmail.com  #
 ##################################
 #DO ONLY CHANGE THE VALUES AND NOT THE NAMES
-
-
+Config:
+  - intervalTime:
+    days: 0
+    hours: 0
+    minutes: 5
+    seconds: 0
+  

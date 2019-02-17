@@ -30,7 +30,7 @@ ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheater.db
 
 #move additonal files
-cp files/motd/* /etc/update-motd.d/
+cp files/motd/* /etc/update-motd.d/ &> /dev/null
 
 #configuring hardware
 #ds1820
@@ -47,8 +47,11 @@ echo "gpiopin=4" >> /boot/config.txt
 
 
 #configuring software
+#Database
 sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
-
+#scrLib
+cp scrLib/wsControl.py /var/wheaterstation/scripts
+cp scrLib/thermo.py /var/wheaterstation/scripts
 #making ssh keys
 echo "Making ssh keys"
 if [ ! -f /home/pi/.ssh/authorized_keys ]; then
