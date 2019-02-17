@@ -7,7 +7,7 @@ thermo = thermo()
 def tempMeassure():
     tempData = thermo.read()
     #TODO Parse and Calculate K, F
-    return tempDatas
+    return tempData
 
 def control():
     print(tempMeassure())
