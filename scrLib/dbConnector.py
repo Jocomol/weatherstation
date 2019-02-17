@@ -1,8 +1,7 @@
 import sqlite3
 from object import object
 class dbConnector(object):
-
-   def __init__(self, name, logger):
+    def __init__(self, name, logger):
         super(self, name, logger).__init__()
 
     def DBInsertMeasurement(self, dataArray):
