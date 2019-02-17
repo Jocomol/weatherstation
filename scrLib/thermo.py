@@ -8,7 +8,7 @@ class thermo:
         functional = True
 
     def read(self):
-        fileobject = open(file)
+        fileobject = open(self.file)
         filecontent = fileobject.read()
         fileobject.close()
         return filecontent
