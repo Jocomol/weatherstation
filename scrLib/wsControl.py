@@ -14,6 +14,7 @@ class controller():
     dbConnector = None
 
     def __init__(self):
+        ##THis created the controller and all the other objects
         self.name = "Controller"
         ##Create Objects
         self.logger = logger()
@@ -22,6 +23,7 @@ class controller():
         self.dbConnector = dbConnector("DBConnector",logger)
 
     def tempMeassure(self):
+        ##executed thermo.read and parses the data
         tempData = self.thermo.read()
         value1 = tempData.split("\n")
         value2 = value1[1]
@@ -36,6 +38,7 @@ class controller():
         return temparray
 
     def control(self):
+        ##gets all the data, puts it in arrays and gives id dbConnector
         self.logger.writeLog(self, "Meassuring started")
         dataArray = []
         dataArray.append(getTime())

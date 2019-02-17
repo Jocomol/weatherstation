@@ -1,4 +1,4 @@
-
+##This is a superclass for the classes thermo and dbConnector 
 class wsPart(object):
     logger = None
     name = ""

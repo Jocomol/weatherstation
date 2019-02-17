@@ -1,13 +1,14 @@
 import os, sys
 from wsPart import wsPart
 class thermo:
-    functional = False
-    file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave'
+    functional = False ## see line 8
+    file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave' ##File where the thermometer writes the datas in
     def __init__(self, name, logger):
-        super(name, logger).__init__()
-        functional = True
+        super(name, logger).__init__() ## this calls the wsPart constructor
+        functional = True ##will implement a self test later, currently this line does nothing
 
     def read(self):
+        ##reads out the file mentioned in line 5 and returns it
         fileobject = open(self.file)
         filecontent = fileobject.read()
         fileobject.close()

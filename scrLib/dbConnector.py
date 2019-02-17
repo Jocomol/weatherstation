@@ -1,3 +1,4 @@
+##Writes into the database very simple
 import sqlite3
 from wsPart import wsPart
 class dbConnector(wsPart):
