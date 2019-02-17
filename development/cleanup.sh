@@ -12,7 +12,5 @@ then
 fi
 
 rm -r /var/wheaterstation &> /dev/null
-rm -r /tmp/installFiles &> /dev/null
 
 echo "Cleaned"
-

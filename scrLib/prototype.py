@@ -11,5 +11,5 @@ while True:
 	value5 = value4.split("=")
 	temp = float(value5[1])
 	temp = temp / 1000
-	print ("Es ist:",temp ,"°C Warm")
+	print ("Temperature:",temp ,"°C")
 	time.sleep(1)

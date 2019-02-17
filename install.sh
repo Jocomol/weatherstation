@@ -16,7 +16,7 @@ fi
 #install software
 echo "Installing required software"
 apt update
-apt install tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+apt install python3 tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
 echo "Software installed"
 
 #making file structure
@@ -24,7 +24,8 @@ mkdir /var/wheaterstation
 mkdir /var/wheaterstation/data
 mkdir /var/wheaterstation/scripts
 mkdir /var/wheaterstation/hardware
-ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820
+mkdir /var/wheaterstation/frontend
+ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheaterdb.db
 
@@ -60,20 +61,11 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 
 #cleanup
 
-if [ $# == 1 ] && [ "$1" == "-t" ];
-then
-        echo "[Testing] NOT DELETING CONFIG"
-else
-        rm config
-fi
-
 #restart
 echo "Now Restarting"
-if  [ $# == 1 ] && [ "$1" == "-t" ];
+if  [ $# -ge 1 ] && [ "$1" == "-t" ];
 then
         echo "[Testing] SCRIPT DONE"
 else
         init 6
 fi
-
-
