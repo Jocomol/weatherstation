@@ -1,7 +1,7 @@
 import datetime
 from object import object
 class logger():
-    logfile = "var/log/wheaterstation.log"
+    logfile = "/var/log/wheaterstation.log"
     name = "Logger"
     def writeLog(self, sender, message):
         conn = open(self.logfile)
