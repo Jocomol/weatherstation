@@ -18,7 +18,7 @@ class controller():
         self.name = "Controller"
         ##Create Objects
         self.logger = logger()
-        self.logger.writeLog(sender=self, message="logger created")
+        self.logger.writeLog(str(self.getName(), message="logger created")
         self.thermo = thermo("Thermometer", logger)
         self.dbConnector = dbConnector("DBConnector",logger)
 
@@ -39,11 +39,11 @@ class controller():
 
     def control(self):
         ##gets all the data, puts it in arrays and gives id dbConnector
-        self.logger.writeLog(sender=self, message="Meassuring started")
+        self.logger.writeLog(str(self.getName(), message="Meassuring started")
         dataArray = []
         dataArray.append(getTime())
         tempArray = tempMeassure()
-        self.logger.writeLog(sender=self, message=str("Meassured Temperatures:",tempArray[0],tempArray[1],tempArray[2],"write into database soon"))
+        self.logger.writeLog(str(self.getName(), message=str("Meassured Temperatures:",tempArray[0],tempArray[1],tempArray[2],"write into database soon"))
         dataArray.append(tempArray[0])
         dataArray.append(tempArray[1])
         dataArray.append(tempArray[2])

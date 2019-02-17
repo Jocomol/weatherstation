@@ -5,7 +5,7 @@ class wsPart(object):
     def __init__(self, name, logger):
         self.logger = logger
         self.name = name
-        self.logger.writeLog(sender=self, message=str("created"))
+        self.logger.writeLog(str(self.getName()), str("created"))
 
     def getName(self):
         return self.name
