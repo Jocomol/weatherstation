@@ -57,6 +57,7 @@ sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
 pip3 install pytemperature
 cp scrLib/wsControl.py /var/wheaterstation/scripts
 cp scrLib/thermo.py /var/wheaterstation/scripts
+cp scrLib/dbConnector.py /var/wheaterstation/scripts
 
 #making ssh keys
 echo "Making ssh keys"

@@ -1,9 +1,12 @@
 ##Imports
+import datetime
 from thermo import thermo
+from dbConnector import dbConnector
 import pytemperature
 
 ##Create Objects
 thermo = thermo()
+dbConnector = dbConnector()
 
 def tempMeassure():
     tempData = thermo.read()
@@ -15,12 +18,21 @@ def tempMeassure():
     temp = float(value5[1])
     cel = temp / 1000
     fah = pytemperature.c2f(cel)
-    kel = pytemperature.k2c(cel)
-    temparray = [cel, fah, kel]
+    kel = pytemperature.c2k(cel)
+    temparray = [str(cel), str(fah), str(kel)]
     return temparray
 
 def control():
-    print(tempMeassure())
+    dataArray = []
+    dataArray.append(getTime())
+    dataArray.append(tempMeassure())
+    dbConnector.DBInsertMeasurement(dataArray)
 
+def getTime():
+    now = datetime.datetime.now()
+    return str(now.isoformat())
 
-control()
+##TESTING
+for i in range(10):
+    control()
+##
