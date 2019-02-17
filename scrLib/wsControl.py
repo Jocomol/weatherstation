@@ -1,5 +1,5 @@
 ##Imports
-from thermo.py import thermo
+from thermo import thermo
 
 ##Create Objects
 thermo = thermo()

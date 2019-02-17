@@ -15,8 +15,11 @@ fi
 
 #install software
 echo "Installing required software"
-apt update
-apt install python3 tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+##TESTING
+echo "No software installed because of Testing"
+#apt update
+#apt install python3 tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+##
 echo "Software installed"
 
 #making file structure
