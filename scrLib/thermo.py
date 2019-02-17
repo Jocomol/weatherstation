@@ -1,6 +1,6 @@
 import os, sys
 from wsPart import wsPart
-class thermo:
+class thermo(wsPart):
     functional = False ## see line 8
     file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave' ##File where the thermometer writes the datas in
     def __init__(self, name, logger):
