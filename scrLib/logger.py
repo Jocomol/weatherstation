@@ -1,6 +1,6 @@
 import datetime
 from object import object
-class logger(object):
+class logger():
     logfile = "var/log/wheaterstation.log"
     name = "Logger"
     def writeLog(self, sender, message):
