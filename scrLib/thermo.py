@@ -4,7 +4,7 @@ class thermo:
     functional = False
     file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave'
     def __init__(self, name, logger):
-        super(self, name, logger).__init__()
+        super(name, logger).__init__()
         functional = True
 
     def read(self):

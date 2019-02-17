@@ -6,7 +6,7 @@ class logger():
     def writeLog(self, sender, message):
         conn = open(self.logfile, "w")
         now = str(datetime.datetime.now().isoformat())
-        conn.write("[" + now + "] " + " (" + sender.getName() + "):" + message + "\n")
+        conn.write("[" + now + "]" + " (" + sender.getName() + "): " + message + "\n")
         conn.close()
 
     def getName(self):
