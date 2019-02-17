@@ -13,7 +13,7 @@ class controller():
     thermo = None
     dbConnector = None
 
-    def __init__(self, name, logger):
+    def __init__(self):
         self.name = "Controller"
         ##Create Objects
         self.logger = logger()
