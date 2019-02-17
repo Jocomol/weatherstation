@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/var/wheaterstation/scripts/wsControl.py", line 58, in <module>
+    controller = controller()
+  File "/var/wheaterstation/scripts/wsControl.py", line 21, in __init__
+    self.thermo = thermo("Thermometer", logger)
+  File "/var/wheaterstation/scripts/thermo.py", line 7, in __init__
+    super(name, logger).__init__()
+TypeError: super() argument 1 must be type, not str
+
