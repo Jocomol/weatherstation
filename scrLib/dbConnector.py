@@ -3,7 +3,7 @@ import sqlite3
 from wsPart import wsPart
 class dbConnector(wsPart):
     def __init__(self, name, logger):
-        super(name, logger).__init__()
+        super().__init__(name, logger)
 
     def DBInsertMeasurement(self, dataArray):
         conn = sqlite3.connect('/var/wheaterstation/data/wheater.db')
