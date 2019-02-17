@@ -7,7 +7,7 @@ class logger():
     def writeLog(self, sender, message):
         conn = open(self.logfile, "w")
         now = str(datetime.datetime.now().isoformat())
-        conn.write("[" + now + "]" + " (" + sender.getName() + "): " + message + "\n")
+        conn.write("[" + now + "]" + " (" + sender + "): " + message + "\n")
         conn.close()
 
     ##Cant extend wsPart because every wsPart needs a logger, this is why I added this incase i need its name
