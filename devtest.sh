@@ -12,6 +12,6 @@ then
 fi
 
 bash development/cleanup.sh
-bash install.sh
+bash install.sh -t
 python3 /var/wheaterstation/scripts/wsControl.py
 echo "Done"
