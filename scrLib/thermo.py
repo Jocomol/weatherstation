@@ -1,14 +1,15 @@
-import os, sys, time
-
+import os, sys
+from object import object
 class thermo:
     functional = False
     file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave'
-    def __init__(self):
-        ##Run test to see if functional
+    def __init__(self, name, logger):
+        super(self, name, logger).__init__()
         functional = True
 
     def read(self):
         fileobject = open(self.file)
         filecontent = fileobject.read()
         fileobject.close()
+        self.logger.writeLog(self,"Completed Meassurement")
         return filecontent

@@ -28,9 +28,12 @@ mkdir /var/wheaterstation/data
 mkdir /var/wheaterstation/scripts
 mkdir /var/wheaterstation/hardware
 mkdir /var/wheaterstation/frontend
+mkdir /var/wheaterstation/log
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheater.db
+touch /var/log/wheaterstation.log
+ln -s /var/log/ /var/wheaterstation/log
 
 #move additonal files
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
@@ -58,6 +61,8 @@ pip3 install pytemperature
 cp scrLib/wsControl.py /var/wheaterstation/scripts
 cp scrLib/thermo.py /var/wheaterstation/scripts
 cp scrLib/dbConnector.py /var/wheaterstation/scripts
+cp scrLib/logger.py /var/wheaterstation/scripts
+cp scrLib/object.py /var/wheaterstation/scripts
 
 #making ssh keys
 echo "Making ssh keys"
