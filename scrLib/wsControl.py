@@ -4,12 +4,12 @@ from thermo import thermo
 ##Create Objects
 thermo = thermo()
 
-def tempMeassure(self):
+def tempMeassure():
     tempData = thermo.read()
     #TODO Parse and Calculate K, F
     return tempDatas
 
-def control(self):
+def control():
     print(tempMeassure())
 
 
