@@ -1,6 +1,6 @@
 ##Imports
 import datetime
-from thermo import thermo
+from thermo import Thermo
 from dbConnector import DBConnector
 from logger import Logger
 from wsPart import WsPart
