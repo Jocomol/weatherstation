@@ -1,53 +1,53 @@
 ##Imports
 import datetime
 from thermo import thermo
-from dbConnector import dbConnector
-from logger import logger
-from wsPart import wsPart
+from dbConnector import DBConnector
+from logger import Logger
+from wsPart import WsPart
 import pytemperature
 
-class controller():
+class Controller():
 
-    name = ""
-    Logger = None
-    Thermo = None
-    DbConnector = None
+    #name = ""
+    #Logger = None
+    #Thermo = None
+    #DbConnector = None
 
     def __init__(self):
         ##THis created the controller and all the other objects
         self.name = "Controller"
         ##Create Objects
-        self.Logger = logger()
-        self.Logger.writeLog(self,"logger created")
-        self.Thermo = thermo("Thermometer", self.Logger)
-        self.DbConnector = dbConnector("DBConnector", self.Logger)
+        self.logger = Logger()
+        self.logger.writeLog(self,"logger created")
+        self.thermo = Thermo("Thermometer", self.Logger)
+        self.db_connector = DBConnector("DBConnector", self.Logger)
 
     def tempMeassure(self):
         ##executed thermo.read and parses the data
-        tempData = self.Thermo.read()
-        value1 = tempData.split("\n")
-        value2 = value1[1]
-        value3 = value2.split(" ")
-        value4 = value3[9]
-        value5 = value4.split("=")
-        temp = float(value5[1])
+        temp_data = self.thermo.read_measurement()
+        value_1 = temp_data.split("\n")
+        value_2 = value_1[1]
+        value_3 = value_2.split(" ")
+        value_4 = value_3[9]
+        value_5 = value_4.split("=")
+        temp = float(value_5[1])
         cel = temp / 1000
         fah = pytemperature.c2f(cel)
         kel = pytemperature.c2k(cel)
-        temparray = [str(cel), str(fah), str(kel)]
-        return temparray
+        temp_array = [str(cel), str(fah), str(kel)]
+        return temp_array
 
     def control(self):
         ##gets all the data, puts it in arrays and gives id dbConnector
-        self.Logger.writeLog(self, "Meassuring started")
-        dataArray = []
-        dataArray.append(self.getTime())
-        tempArray = self.tempMeassure()
-        self.Logger.writeLog(self, "Meassured Temperatures:",tempArray[0],tempArray[1],tempArray[2],"write into database soon")
-        dataArray.append(tempArray[0])
-        dataArray.append(tempArray[1])
-        dataArray.append(tempArray[2])
-        self.DbConnector.DBInsertMeasurement(dataArray)
+        self.logger.writeLog(self, "Meassuring started")
+        data_array = []
+        data_array.append(self.getTime())
+        temp_array = self.tempMeassure()
+        self.logger.writeLog(self, "Meassured Temperatures:",temp_array[0],temp_array[1],temp_array[2],"write into database soon")
+        data_array.append(temp_array[0])
+        data_array.append(temp_array[1])
+        data_array.append(temp_array[2])
+        self.db_connector.database_insert_measurement(data_array)
 
     def getTime(self):
         now = datetime.datetime.now()
@@ -58,6 +58,6 @@ class controller():
 
 ##TESTING
 for i in range(10):
-    controller = controller()
+    controller = Controller()
     controller.control()
 ##
