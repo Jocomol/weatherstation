@@ -6,24 +6,16 @@ from logger import Logger
 from wsPart import WsPart
 import pytemperature
 
-class Controller():
+class Controller(): #Controlls everything and manages the Wheaterstation
 
-    #name = ""
-    #Logger = None
-    #Thermo = None
-    #DbConnector = None
-
-    def __init__(self):
-        ##THis created the controller and all the other objects
+    def __init__(self): ##Creates all the Objects
         self.name = "Controller"
-        ##Create Objects
         self.logger = Logger()
         self.logger.writeLog(self,"logger created")
         self.thermo = Thermo("Thermometer", self.logger)
         self.db_connector = DBConnector("DBConnector", self.logger)
 
-    def tempMeassure(self):
-        ##executed thermo.read and parses the data
+    def tempMeassure(self): ##Gets the temparature data from the thermometer class
         temp_data = self.thermo.read_measurement()
         value_1 = temp_data.split("\n")
         value_2 = value_1[1]
@@ -37,8 +29,7 @@ class Controller():
         temp_array = [str(cel), str(fah), str(kel)]
         return temp_array
 
-    def control(self):
-        ##gets all the data, puts it in arrays and gives id dbConnector
+    def main(self): ##Calls all methods and writes results into the database
         self.logger.writeLog(self, "Meassuring started")
         data_array = []
         data_array.append(self.getTime())
@@ -56,9 +47,10 @@ class Controller():
     def getName(self):
         return self.name
 
-##TESTING
-controller = Controller()
-for i in range(10):
 
-    controller.control()
+if __name__ == "__main__":
+    controller = Controller()
+##TESTING
+    for i in range(10):
+        controller.main()
 ##

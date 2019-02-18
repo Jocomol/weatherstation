@@ -4,16 +4,16 @@
 #Contact: joelmeier08@gmail.com  #
 ##################################
 
-#Check if sudo
+##Check if sudo
 if [ "$EUID" -ne 0 ];
 then
         echo "Please run as root"
 	exit
 fi
 
-#raspi-config
+##raspi-config
 
-#install software
+##install software
 echo "Installing required software"
 ##TESTING
 echo "No software installed because of Testing"
@@ -22,7 +22,7 @@ echo "No software installed because of Testing"
 ##
 echo "Software installed"
 
-#making file structure
+##making file structure
 mkdir /var/wheaterstation
 mkdir /var/wheaterstation/data
 mkdir /var/wheaterstation/scripts
@@ -32,14 +32,15 @@ mkdir /var/wheaterstation/log
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheater.db
+rm /var/log/wheaterstation.log &> /dev/null
 touch /var/log/wheaterstation.log
 ln -s /var/log/ /var/wheaterstation/log
 
-#move additonal files
+##move additonal files
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
 
-#configuring hardware
-#ds1820
+##configuring hardware
+##ds1820 (Thermometer)
 lsmod
 modprobe wire
 modprobe w1-gpio
@@ -52,11 +53,11 @@ echo "dtoverlay=w1-gpio" >> /boot/config.txt
 echo "gpiopin=4" >> /boot/config.txt
 
 
-#configuring software
-#Database
+##configuring software
+##Database
 sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
 
-#scrLib
+##scrLib
 pip3 install pytemperature
 cp scrLib/wsControl.py /var/wheaterstation/scripts
 cp scrLib/thermo.py /var/wheaterstation/scripts
@@ -64,7 +65,7 @@ cp scrLib/dbConnector.py /var/wheaterstation/scripts
 cp scrLib/logger.py /var/wheaterstation/scripts
 cp scrLib/wsPart.py /var/wheaterstation/scripts
 
-#making ssh keys
+##making ssh keys
 echo "Making ssh keys"
 if [ ! -f /home/pi/.ssh/authorized_keys ]; then
 	mkdir /home/pi/.ssh
@@ -77,9 +78,9 @@ if [ ! -f /home/pi/.ssh/authorized_keys ]; then
 fi
 echo "The ssh keys are stored in /home/pi/.ssh"
 
-#cleanup
+##cleanup
 
-#restart
+##restart
 echo "Now Restarting"
 if  [ $# -ge 1 ] && [ "$1" == "-t" ];
 then

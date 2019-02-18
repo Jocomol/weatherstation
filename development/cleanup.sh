@@ -12,5 +12,5 @@ then
 fi
 
 rm -r /var/wheaterstation &> /dev/null
-
+rm /var/log/wheaterstation.log  &> /dev/null
 echo "Cleaned"
