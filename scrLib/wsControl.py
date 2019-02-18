@@ -43,7 +43,7 @@ class Controller():
         data_array = []
         data_array.append(self.getTime())
         temp_array = self.tempMeassure()
-        self.logger.writeLog(self, "Meassured Temperatures:",temp_array[0],temp_array[1],temp_array[2],"write into database soon")
+        self.logger.writeLog(self, "Meassured Temperatures: " + str(temp_array[0]) + str(temp_array[1]) + str(temp_array[2]) + " write into database soon")
         data_array.append(temp_array[0])
         data_array.append(temp_array[1])
         data_array.append(temp_array[2])
