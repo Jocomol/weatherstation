@@ -9,22 +9,22 @@ import pytemperature
 class controller():
 
     name = ""
-    logger = None
-    thermo = None
-    dbConnector = None
+    Logger = None
+    Thermo = None
+    DbConnector = None
 
     def __init__(self):
         ##THis created the controller and all the other objects
         self.name = "Controller"
         ##Create Objects
-        self.logger = logger()
-        self.logger.writeLog(self,"logger created")
-        self.thermo = thermo("Thermometer", logger)
-        self.dbConnector = dbConnector("DBConnector",logger)
+        self.Logger = logger()
+        self.Logger.writeLog(self,"logger created")
+        self.Thermo = thermo("Thermometer", self.Logger)
+        self.DbConnector = dbConnector("DBConnector", self.Logger)
 
     def tempMeassure(self):
         ##executed thermo.read and parses the data
-        tempData = self.thermo.read()
+        tempData = self.Thermo.read()
         value1 = tempData.split("\n")
         value2 = value1[1]
         value3 = value2.split(" ")
@@ -39,15 +39,15 @@ class controller():
 
     def control(self):
         ##gets all the data, puts it in arrays and gives id dbConnector
-        self.logger.writeLog(self, "Meassuring started")
+        self.Logger.writeLog(self, "Meassuring started")
         dataArray = []
-        dataArray.append(getTime())
-        tempArray = tempMeassure()
-        self.logger.writeLog(self, "Meassured Temperatures:",tempArray[0],tempArray[1],tempArray[2],"write into database soon")
+        dataArray.append(self.getTime())
+        tempArray = self.tempMeassure()
+        self.Logger.writeLog(self, "Meassured Temperatures:",tempArray[0],tempArray[1],tempArray[2],"write into database soon")
         dataArray.append(tempArray[0])
         dataArray.append(tempArray[1])
         dataArray.append(tempArray[2])
-        self.dbConnector.DBInsertMeasurement(dataArray)
+        self.DbConnector.DBInsertMeasurement(dataArray)
 
     def getTime(self):
         now = datetime.datetime.now()

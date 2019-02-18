@@ -1,11 +1,11 @@
 ##This is a superclass for the classes thermo and dbConnector
 class wsPart(object):
-    logger = None
+    Logger = None
     name = ""
-    def __init__(self, name, logger):
-        self.logger = logger
+    def __init__(self, name, Logger):
+        self.Logger = Logger
         self.name = name
-        self.logger.writeLog(self, "created")
+        self.Logger.writeLog(self, "created")
 
     def getName(self):
         return self.name
