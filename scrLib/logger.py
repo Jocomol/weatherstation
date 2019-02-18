@@ -4,10 +4,10 @@ from wsPart import wsPart
 class logger():
     logfile = "/var/log/wheaterstation.log"
     name = "Logger"
-    def writeLog(sender, message):
+    def writeLog(self, sender, message):
         conn = open(self.logfile, "w")
         now = str(datetime.datetime.now().isoformat())
-        conn.write("[" + now + "]" + " (" + sender + "): " + message + "\n")
+        conn.write("[" + now + "]" + " (" + sender.getName() + "): " + message + "\n") ##gets the name of the sender and the message and writes it into the logfile
         conn.close()
 
     ##Cant extend wsPart because every wsPart needs a logger, this is why I added this incase i need its name

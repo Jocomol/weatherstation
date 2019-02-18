@@ -1,8 +1,10 @@
 Traceback (most recent call last):
-  File "/var/wheaterstation/scripts/wsControl.py", line 58, in <module>
+  File "scrLib/wsControl.py", line 61, in <module>
     controller = controller()
-  File "/var/wheaterstation/scripts/wsControl.py", line 21, in __init__
+  File "scrLib/wsControl.py", line 22, in __init__
     self.thermo = thermo("Thermometer", logger)
-  File "/var/wheaterstation/scripts/thermo.py", line 7, in __init__
-    super(name, logger).__init__()
-TypeError: super() argument 1 must be type, not str
+  File "/home/joco/git/wheaterstation/scrLib/thermo.py", line 10, in __init__
+    super().__init__(name, logger) ## this calls the wsPart constructor
+  File "/home/joco/git/wheaterstation/scrLib/wsPart.py", line 8, in __init__
+    self.logger.writeLog(self, "created")
+TypeError: writeLog() missing 1 required positional argument: 'message'

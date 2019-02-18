@@ -9,6 +9,6 @@ class dbConnector(wsPart):
         conn = sqlite3.connect('/var/wheaterstation/data/wheater.db')
         c = conn.cursor()
         c.execute('insert into measurement (DateTime, temperature_C, temperature_F, temperature_K) VALUES (?,?,?,?)', dataArray)
-        self.logger.writeLog(sender=str(self.getName()), message = str('Write',dataArray,'into Database'))
+        self.logger.writeLog(self, str('Write',dataArray,'into Database'))
         conn.commit()
         conn.close()
