@@ -19,8 +19,8 @@ class Controller():
         ##Create Objects
         self.logger = Logger()
         self.logger.writeLog(self,"logger created")
-        self.thermo = Thermo("Thermometer", self.Logger)
-        self.db_connector = DBConnector("DBConnector", self.Logger)
+        self.thermo = Thermo("Thermometer", self.logger)
+        self.db_connector = DBConnector("DBConnector", self.logger)
 
     def tempMeassure(self):
         ##executed thermo.read and parses the data
