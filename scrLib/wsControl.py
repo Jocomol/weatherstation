@@ -57,7 +57,8 @@ class Controller():
         return self.name
 
 ##TESTING
+controller = Controller()
 for i in range(10):
-    controller = Controller()
+
     controller.control()
 ##
