@@ -6,10 +6,6 @@ This is the script library wich manages the Wheaterstation.
 ### dbConnector.py
 The connector from the scrLib to the database.
 
-### logger.py
-**May be deleted later**
-Writes logs into the log file.
-
 ### thermo.py
 The representation of the thermometer in the scrLib. Reads out the data from the thermometer.
 

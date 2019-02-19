@@ -4,7 +4,7 @@ from wsPart import WsPart
 class Thermo(WsPart): ##Reads out the file of the data from the Thermometer
     functional = False ##Functionality will be added later
     file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave' ##File where the thermometer writes the data in
-
+    #file = "/home/joco/Documents/testing.txt"
     def __init__(self, name, logger):
         super().__init__(name, logger) ## Calls the wsPart constructor
 
@@ -13,5 +13,5 @@ class Thermo(WsPart): ##Reads out the file of the data from the Thermometer
             fileobject = open(self.file)
             filecontent = fileobject.read()
             fileobject.close()
-            self.logger.writeLog(self,"Completed Meassurement")
+            self.logger.info("Completed Meassuring")
         return filecontent
