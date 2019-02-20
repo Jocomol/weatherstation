@@ -1,4 +1,14 @@
 ##WIP
 import yaml
-yamldict = yaml.load(../config.yml)
+from crontab import CronTab
 ##intervalMeasurementTime:
+with open("../config.yml", 'r') as stream:
+    try:
+        yamlconfig = yaml.load(stream))
+    except yaml.YAMLError as exc:
+
+##intervalMeasurementTime:
+
+
+##Cronjob
+crontab = CronTab()
