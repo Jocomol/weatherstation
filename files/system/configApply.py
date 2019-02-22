@@ -24,7 +24,7 @@ with open("/var/wheaterstation/config.yml", 'r') as stream:
 # Cronjob
 # intervalMeasurementTime:
 measurement_job = crontab.new(
-    command="python3 /var/wheaterstation/script/wsControl.py")
+    command="python3 /var/wheaterstation/scripts/wsControl.py")
 measurement_job.day.every(yamlconfig["Config"][0]["day"])
 config_array.append(yamlconfig["Config"][0]["day"])
 measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
