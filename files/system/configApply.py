@@ -48,7 +48,7 @@ logger.info("Config applied")
 
 # Write the config into the database
 cursor.execute("""
-    insert into measurement (
+    insert into config (
         intervalMeasurementTime_day,
         intervalMeasurementTime_hour,
         intervalMeasurementTime_minute,
