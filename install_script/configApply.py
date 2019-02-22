@@ -4,9 +4,11 @@ from crontab import CronTab
 ##intervalMeasurementTime:
 with open("../config.yml", 'r') as stream:
     try:
-        yamlconfig = yaml.load(stream))
+        yamlconfig = yaml.dump(yaml.load(stream)))
     except yaml.YAMLError as exc:
+        print(exc)
 
+print(yamlconfig["Config"]["intervalMeasurementTime"]["minutes"])
 ##intervalMeasurementTime:
 
 
