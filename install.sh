@@ -79,7 +79,8 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 ##system
 cp config.yml /var/wheaterstation
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
-cp install_script/configApply.py /var/wheaterstation/system
+cp files/system/configApply.py /var/wheaterstation/system
+cp files/system/updateWS.sh /var/wheaterstation/system
 
 ##cleanup
 

@@ -2,16 +2,16 @@
 #Author: Joe Meier a.k.a Jocomol #
 #Contact: joelmeier08@gmail.com  #
 ##################################
-#DO ONLY CHANGE THE VALUES AND NOT THE NAMES
+#DO ONLY CHANGE THE VALUES AND NOT THE KEYS
 Config:
   - intervalMeasurementTime:
-    days: 0
-    hours: 0
-    minutes: 5
-    seconds: 0
-    
+    day: 0
+    hour: 0
+    minute: 5
+    second: 0
+
   - updateInterval:
-    days: 14
-    hours: 0
-    minutes: 0
-    seconds: 0
+    day: 14
+    hour: 0
+    minute: 0
+    second: 0
