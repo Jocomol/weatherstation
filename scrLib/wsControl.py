@@ -1,4 +1,4 @@
-##Imports
+#Imports
 import datetime
 from thermo import Thermo
 from dbConnector import DBConnector
@@ -6,19 +6,25 @@ from wsPart import WsPart
 import pytemperature
 import logging
 
-class Controller(): #Controlls everything and manages the Wheaterstation
 
-    def __init__(self): ##Creates all the Objects
-        logging.basicConfig(filename='/var/log/wheaterstation.log',level=logging.DEBUG)
+class Controller():  #Controlls everything and manages the Wheaterstation
+
+    def __init__(self):  #Creates all the Objects
+        logging.basicConfig(
+            filename='/var/log/wheaterstation.log',
+            level=logging.DEBUG)
         self.name = "Controller"
         self.controller_logger = logging.getLogger("Controller")
         self.thermometer_logger = logging.getLogger("Thermometer")
         self.db_connector_logger = logging.getLogger("Database Connector")
         self.thermo = Thermo("Thermometer", self.thermometer_logger)
-        self.db_connector = DBConnector("DBConnector", self.db_connector_logger)
+        self.db_connector = DBConnector(
+            "DBConnector",
+            self.db_connector_logger)
         self.controller_logger.info("All Objects created")
 
-    def tempMeassure(self): ##Gets the temparature data from the thermometer class
+    #Gets the temparature data from the thermometer class
+    def tempMeassure(self):
         temp_data = self.thermo.read_measurement()
         value_1 = temp_data.split("\n")
         value_2 = value_1[1]
@@ -32,7 +38,7 @@ class Controller(): #Controlls everything and manages the Wheaterstation
         temp_array = [str(cel), str(fah), str(kel)]
         return temp_array
 
-    def main(self): ##Calls all methods and writes results into the database
+    def main(self):  #Calls all methods and writes results into the database
         self.thermometer_logger.info("Meassuring started")
         data_array = []
         data_array.append(self.getTime())

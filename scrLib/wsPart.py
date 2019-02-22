@@ -1,6 +1,8 @@
-class WsPart(object): ##This is a superclass for the classes thermo and dbConnector
+#This is a superclass for the classes thermo and dbConnector
+class WsPart(object):
 
-    def __init__(self, name, logger): #Every wsPart (Wheaterstation Part) has a name and a refrence to the logger
+    #Every wsPart has a name and a refrence to the logger
+    def __init__(self, name, logger):
         self.logger = logger
         self.name = name
 
