@@ -6,11 +6,12 @@ import sqlite3
 
 # Setup
 logging.basicConfig(
-    filename='/var/log/wheaterstation.log',level=logging.DEBUG)
+    filename='/var/log/wheaterstation.log', level=logging.DEBUG)
 logger = logging.getLogger("Config")
 crontab = CronTab(user='root')
 connection = sqlite3.connect('/var/wheaterstation/data/wheater.db')
 cursor = connection.cursor()
+config_array = []
 
 # Load configfile
 with open("/var/wheaterstation/config.yml", 'r') as stream:
