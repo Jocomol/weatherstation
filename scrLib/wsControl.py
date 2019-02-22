@@ -1,4 +1,4 @@
-#Imports
+## Imports
 import datetime
 from thermo import Thermo
 from dbConnector import DBConnector
@@ -7,9 +7,9 @@ import pytemperature
 import logging
 
 
-class Controller():  #Controlls everything and manages the Wheaterstation
+class Controller():  ## Controlls everything and manages the Wheaterstation
 
-    def __init__(self):  #Creates all the Objects
+    def __init__(self):  ## Creates all the Objects
         logging.basicConfig(
             filename='/var/log/wheaterstation.log',
             level=logging.DEBUG)
@@ -23,7 +23,7 @@ class Controller():  #Controlls everything and manages the Wheaterstation
             self.db_connector_logger)
         self.controller_logger.info("All Objects created")
 
-    #Gets the temparature data from the thermometer class
+    ## Gets the temparature data from the thermometer class
     def tempMeassure(self):
         temp_data = self.thermo.read_measurement()
         value_1 = temp_data.split("\n")
@@ -38,12 +38,14 @@ class Controller():  #Controlls everything and manages the Wheaterstation
         temp_array = [str(cel), str(fah), str(kel)]
         return temp_array
 
-    def main(self):  #Calls all methods and writes results into the database
+    def main(self):  ## Calls all methods and writes results into the database
         self.thermometer_logger.info("Meassuring started")
         data_array = []
         data_array.append(self.getTime())
         temp_array = self.tempMeassure()
-        self.thermometer_logger.info("Meassured Temperatures: " + str(temp_array))
+        self.thermometer_logger.info(
+            "Meassured Temperatures: " +
+            str(temp_array))
         data_array.append(temp_array[0])
         data_array.append(temp_array[1])
         data_array.append(temp_array[2])
@@ -59,7 +61,7 @@ class Controller():  #Controlls everything and manages the Wheaterstation
 
 if __name__ == "__main__":
     controller = Controller()
-##TESTING
+## Testing
     for i in range(10):
         controller.main()
 ##
