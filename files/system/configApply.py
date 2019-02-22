@@ -8,7 +8,6 @@ import sqlite3
 logging.basicConfig(
     filename='/var/log/wheaterstation.log', level=logging.DEBUG)
 logger = logging.getLogger("Config")
-crontab = CronTab(user='root')
 connection = sqlite3.connect('/var/wheaterstation/data/wheater.db')
 cursor = connection.cursor()
 config_array = []
@@ -23,6 +22,7 @@ with open("/var/wheaterstation/config.yml", 'r') as stream:
 
 # Cronjob
 # intervalMeasurementTime:
+crontab = CronTab(user='root')
 measurement_job = crontab.new(
     command="python3 /var/wheaterstation/script/wsControl.py")
 measurement_job.day.every(yamlconfig["Config"][0]["day"])
@@ -33,6 +33,7 @@ measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
 config_array.append(yamlconfig["Config"][0]["minute"])
 
 # updateInterval
+crontab = CronTab(user='root')
 updateInterval_job = crontab.new(
     command="bash /var/wheaterstation/system/updateWS.sh")
 measurement_job.day.every(yamlconfig["Config"][1]["day"])
@@ -41,9 +42,8 @@ measurement_job.hour.every(yamlconfig["Config"][1]["hour"])
 config_array.append(yamlconfig["Config"][1]["hour"])
 measurement_job.minute.every(yamlconfig["Config"][1]["minute"])
 config_array.append(yamlconfig["Config"][1]["minute"])
-
-# write into crontab
 crontab.write()
+
 logger.info("Config applied")
 
 # Write the config into the database
