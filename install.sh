@@ -29,6 +29,7 @@ mkdir /var/wheaterstation/scripts
 mkdir /var/wheaterstation/hardware
 mkdir /var/wheaterstation/frontend
 mkdir /var/wheaterstation/log
+mkdir /var/wheaterstation/system
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/wheaterstation/frontend
 touch /var/wheaterstation/data/wheater.db
@@ -60,9 +61,7 @@ pip3 install pytemperature python-crontab
 cp scrLib/wsControl.py /var/wheaterstation/scripts
 cp scrLib/thermo.py /var/wheaterstation/scripts
 cp scrLib/dbConnector.py /var/wheaterstation/scripts
-cp scrLib/logger.py /var/wheaterstation/scripts
 cp scrLib/wsPart.py /var/wheaterstation/scripts
-cp scrLib/configApply.py /var/wheaterstation/scripts
 
 ##making ssh keys
 echo "Making ssh keys"
@@ -80,6 +79,7 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 ##system
 cp config.yml /var/wheaterstation
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
+cp install_script/configApply.py /var/wheaterstation/system
 
 ##cleanup
 
