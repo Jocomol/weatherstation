@@ -14,6 +14,5 @@ fi
 bash development/cleanup.sh
 bash install.sh -t
 python3 /var/wheaterstation/scripts/wsControl.py
-sqlite3 /var/wheaterstation/data/wheater.db 'select * from measurement;'
-cat /var/log/wheaterstation.log
+python3 /var/wheaterstation/scripts/configApply.py
 echo "Done"

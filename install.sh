@@ -36,9 +36,6 @@ rm /var/log/wheaterstation.log &> /dev/null
 touch /var/log/wheaterstation.log
 ln -s /var/log/ /var/wheaterstation/log
 
-##move additonal files
-cp files/motd/* /etc/update-motd.d/ &> /dev/null
-
 ##configuring hardware
 ##ds1820 (Thermometer)
 lsmod
@@ -54,6 +51,7 @@ echo "gpiopin=4" >> /boot/config.txt
 
 
 ##configuring software
+
 ##Database
 sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
 
@@ -64,6 +62,7 @@ cp scrLib/thermo.py /var/wheaterstation/scripts
 cp scrLib/dbConnector.py /var/wheaterstation/scripts
 cp scrLib/logger.py /var/wheaterstation/scripts
 cp scrLib/wsPart.py /var/wheaterstation/scripts
+cp scrLib/configApply.py /var/wheaterstation/scripts
 
 ##making ssh keys
 echo "Making ssh keys"
@@ -77,6 +76,10 @@ if [ ! -f /home/pi/.ssh/authorized_keys ]; then
 	cat home/pi/.ssh/id_rsa.pub >> /home/pi/.ssh/authorized_keys
 fi
 echo "The ssh keys are stored in /home/pi/.ssh"
+
+##system
+cp config.yml /var/wheaterstation
+cp files/motd/* /etc/update-motd.d/ &> /dev/null
 
 ##cleanup
 
