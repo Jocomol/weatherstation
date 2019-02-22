@@ -1,16 +1,15 @@
-##WIP
-import yaml
+# WIP
 from crontab import CronTab
-##intervalMeasurementTime:
+import yaml
+
 with open("../config.yml", 'r') as stream:
     try:
-        yamlconfig = yaml.dump(yaml.load(stream))
+        yamlconfig = yaml.load(stream)
     except yaml.YAMLError as exc:
         print(exc)
 
 print(yamlconfig["Config"]["intervalMeasurementTime"]["minutes"])
-##intervalMeasurementTime:
+# intervalMeasurementTime:
 
-
-##Cronjob
+#Cronjob
 crontab = CronTab()
