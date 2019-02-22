@@ -31,8 +31,6 @@ measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
 config_array.append(yamlconfig["Config"][0]["hour"])
 measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
 config_array.append(yamlconfig["Config"][0]["minute"])
-measurement_job.second.every(yamlconfig["Config"][0]["second"])
-config_array.append(yamlconfig["Config"][0]["second"])
 
 # updateInterval
 updateInterval_job = crontab.new(
@@ -43,8 +41,6 @@ measurement_job.hour.every(yamlconfig["Config"][1]["hour"])
 config_array.append(yamlconfig["Config"][1]["hour"])
 measurement_job.minute.every(yamlconfig["Config"][1]["minute"])
 config_array.append(yamlconfig["Config"][1]["minute"])
-measurement_job.second.every(yamlconfig["Config"][1]["second"])
-config_array.append(yamlconfig["Config"][1]["second"])
 
 # write into crontab
 crontab.write()
@@ -56,12 +52,10 @@ cursor.execute("""
         intervalMeasurementTime_day,
         intervalMeasurementTime_hour,
         intervalMeasurementTime_minute,
-        intervalMeasurementTime_second,
         updateInterval_day,
         updateInterval_hour,
-        updateInterval_minute,
-        updateInterval_second
+        updateInterval_minute
         )
-    VALUES (?,?,?,?,?,?,?,?)""", config_array)
+    VALUES (?,?,?,?,?,?)""", config_array)
 connection.commit()
 connection.close()

@@ -8,10 +8,8 @@ Config:
     day: 0
     hour: 0
     minute: 5
-    second: 0
 
   - updateInterval:
     day: 14
     hour: 0
     minute: 0
-    second: 0

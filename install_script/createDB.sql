@@ -11,11 +11,9 @@ ID INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
 intervalMeasurementTime_day REAL,
 intervalMeasurementTime_hour REAL,
 intervalMeasurementTime_minute REAL,
-intervalMeasurementTime_second REAL,
 updateInterval_day REAL,
 updateInterval_hour REAL,
-updateInterval_minute REAL,
-updateInterval_second REAL
+updateInterval_minute REAL
 );
 
 /*
