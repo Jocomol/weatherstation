@@ -2,7 +2,7 @@
 from crontab import CronTab
 import yaml
 
-with open("../config.yml", 'r') as stream:
+with open("/var/wheaterstation/config.yml", 'r') as stream:
     try:
         yamlconfig = yaml.load(stream)
     except yaml.YAMLError as exc:
