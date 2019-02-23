@@ -61,7 +61,5 @@ class Controller():  # Controlls everything and manages the weatherstation
 
 if __name__ == "__main__":
     controller = Controller()
-# Testing
-    for i in range(10):
-        controller.main()
+    controller.main()
 #
