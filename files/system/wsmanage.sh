@@ -28,5 +28,11 @@ then
     else
       python3 /var/weatherstation/scripts/wsControl.py
     fi
+  else
+    echo "Unknown Option: " $1
+    echo "Execute wsmanage help or wsmanage ?"
   fi
+else
+  echo "Please enter a option"
+  echo "Execute wsmanage help or wsmanage ?"
 fi
