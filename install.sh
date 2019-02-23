@@ -35,6 +35,7 @@ ln -s /var/www/html /var/weatherstation/frontend
 touch /var/weatherstation/data/wheater.db
 rm /var/log/weatherstation.log &> /dev/null
 touch /var/log/weatherstation.log
+chmod 777 /var/log/weatherstation.log
 ln -s /var/log/ /var/weatherstation/log
 
 ##configuring hardware
@@ -52,7 +53,6 @@ echo "gpiopin=4" >> /boot/config.txt
 
 
 ##configuring software
-
 ##Database
 sqlite3 /var/weatherstation/data/wheater.db < install_script/createDB.sql
 
