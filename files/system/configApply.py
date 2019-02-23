@@ -25,11 +25,17 @@ with open("/var/weatherstation/config.yml", 'r') as stream:
 # time_measureInterval:
 time_measurement_job = crontab.new(
     command="python3 /var/weatherstation/scripts/wsControl.py")
-time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
-time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
-time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
-time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
-time_measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
+if yamlconfig["Config"][0]["weekday"] is not None:
+    time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
+if yamlconfig["Config"][0]["month"] is not None:
+    time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
+if yamlconfig["Config"][0]["day"] is not None:
+    time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
+if yamlconfig["Config"][0]["hour"] is not None:
+    time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
+if yamlconfig["Config"][0]["minute"] is not None:
+    time_measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
+
 config_array.append(yamlconfig["Config"][0]["weekday"])
 config_array.append(yamlconfig["Config"][0]["month"])
 config_array.append(yamlconfig["Config"][0]["day"])
@@ -39,11 +45,17 @@ config_array.append(yamlconfig["Config"][0]["minute"])
 # updateInterval
 time_update_job = crontab.new(
     command="bash /var/weatherstation/system/updateWS.sh")
-time_update_job.dow.on(yamlconfig["Config"][0]["weekday"])
-time_update_job.month.during(yamlconfig["Config"][0]["month"])
-time_update_job.day.every(yamlconfig["Config"][0]["day"])
-time_update_job.hour.every(yamlconfig["Config"][0]["hour"])
-time_update_job.minute.every(yamlconfig["Config"][0]["minute"])
+if yamlconfig["Config"][0]["weekday"] is not None:
+    time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
+if yamlconfig["Config"][0]["month"] is not None:
+    time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
+if yamlconfig["Config"][0]["day"] is not None:
+    time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
+if yamlconfig["Config"][0]["hour"] is not None:
+    time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
+if yamlconfig["Config"][0]["minute"] is not None:
+    time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
+
 config_array.append(yamlconfig["Config"][1]["weekday"])
 config_array.append(yamlconfig["Config"][1]["month"])
 config_array.append(yamlconfig["Config"][1]["day"])
