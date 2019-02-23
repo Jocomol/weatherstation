@@ -81,8 +81,12 @@ cp config.yml /var/weatherstation
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
 cp files/system/configApply.py /var/weatherstation/system
 cp files/system/updateWS.sh /var/weatherstation/system
+cp files/system/shwoconfig.py /var/weatherstation/system
 chmod -R 777 /var/weatherstation/
 python3 /var/weatherstation/system/configApply.py
+##TODO wsmanage
+cp wsmanage.sh /usr/bin/wsmanage
+chmod +X  /usr/bin/wsmanage
 ##cleanup
 
 ##restart
