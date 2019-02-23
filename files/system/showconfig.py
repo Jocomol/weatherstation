@@ -9,7 +9,8 @@ connection = sqlite3.connect('/var/weatherstation/data/wheater.db')
 cursor = connection.cursor()
 
 # Read out config from database
-cursor.execute('SELECT max(id) FROM config')
-max_id = cursor.fetchone()[0]
-config = cursor.execute('SELECT * FROM config WHERE ID = ?', str(max_id))
+cursor.execute("""SELECT * FROM config WHERE
+    ID = (SELECT MAX(ID)  FROM TABLE);""")
+config = cursor.fetchone()
 print(config)
+connection.close()
