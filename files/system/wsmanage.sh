@@ -18,7 +18,7 @@ then
     echo "-----------------------------------------------------------------------------------------------------"
   elif [ $1 == 'showconfig' ]
   then
-    python3 /var/weatherstation/system/shwoconfig.py
+    python3 /var/weatherstation/system/showconfig.py
   elif [ $1 == 'measure' ]
   then
     if [ "$EUID" -ne 0 ];
@@ -26,7 +26,7 @@ then
       echo "The force-measure needs root access."
       exit
     else
-      python3 /var/weatherstation/scrLib/wsControl.py
+      python3 /var/weatherstation/scripts/wsControl.py
     fi
   fi
 fi
