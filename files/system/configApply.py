@@ -21,41 +21,44 @@ with open("/var/weatherstation/config.yml", 'r') as stream:
         print(exc)
         logger.error("Error occured appling the config " + exc)
 
-# Cronjob
-# time_measureInterval:
-time_measurement_job = crontab.new(
-    command="python3 /var/weatherstation/scripts/wsControl.py")
-if yamlconfig["Config"][0]["weekday"] is not None:
-    time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
-if yamlconfig["Config"][0]["month"] is not None:
-    time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
-if yamlconfig["Config"][0]["day"] is not None:
-    time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
-if yamlconfig["Config"][0]["hour"] is not None:
-    time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
-if yamlconfig["Config"][0]["minute"] is not None:
-    time_measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
+try:
+    # Cronjob
+    # time_measureInterval:
+    time_measurement_job = crontab.new(
+        command="python3 /var/weatherstation/scripts/wsControl.py")
+    if yamlconfig["Config"][0]["weekday"] is not None:
+        time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
+    if yamlconfig["Config"][0]["month"] is not None:
+        time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
+    if yamlconfig["Config"][0]["day"] is not None:
+        time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
+    if yamlconfig["Config"][0]["hour"] is not None:
+        time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
+    if yamlconfig["Config"][0]["minute"] is not None:
+        time_measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
+
+    # updateInterval
+    time_update_job = crontab.new(
+        command="bash /var/weatherstation/system/updateWS.sh")
+    if yamlconfig["Config"][1]["weekday"] is not None:
+        time_update_job.dow.on(yamlconfig["Config"][1]["weekday"])
+    if yamlconfig["Config"][1]["month"] is not None:
+        time_update_job.month.during(yamlconfig["Config"][1]["month"])
+    if yamlconfig["Config"][1]["day"] is not None:
+        time_update_job.day.every(yamlconfig["Config"][1]["day"])
+    if yamlconfig["Config"][1]["hour"] is not None:
+        time_update_job.hour.every(yamlconfig["Config"][1]["hour"])
+    if yamlconfig["Config"][1]["minute"] is not None:
+        time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
+except IOError:
+    print("""Not enough privliedges to change cronjobs.
+            please start wsmanage configapply again with root privileges""")
 
 config_array.append(yamlconfig["Config"][0]["weekday"])
 config_array.append(yamlconfig["Config"][0]["month"])
 config_array.append(yamlconfig["Config"][0]["day"])
 config_array.append(yamlconfig["Config"][0]["hour"])
 config_array.append(yamlconfig["Config"][0]["minute"])
-
-# updateInterval
-time_update_job = crontab.new(
-    command="bash /var/weatherstation/system/updateWS.sh")
-if yamlconfig["Config"][1]["weekday"] is not None:
-    time_update_job.dow.on(yamlconfig["Config"][1]["weekday"])
-if yamlconfig["Config"][1]["month"] is not None:
-    time_update_job.month.during(yamlconfig["Config"][1]["month"])
-if yamlconfig["Config"][1]["day"] is not None:
-    time_update_job.day.every(yamlconfig["Config"][1]["day"])
-if yamlconfig["Config"][1]["hour"] is not None:
-    time_update_job.hour.every(yamlconfig["Config"][1]["hour"])
-if yamlconfig["Config"][1]["minute"] is not None:
-    time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
-
 config_array.append(yamlconfig["Config"][1]["weekday"])
 config_array.append(yamlconfig["Config"][1]["month"])
 config_array.append(yamlconfig["Config"][1]["day"])

@@ -21,13 +21,7 @@ then
     python3 /var/weatherstation/system/showconfig.py
   elif [ $1 == 'measure' ]
   then
-    if [ "$EUID" -ne 0 ];
-    then
-      echo "The force-measure needs root access."
-      exit
-    else
-      python3 /var/weatherstation/scripts/wsControl.py
-    fi
+    python3 /var/weatherstation/scripts/wsControl.py
   else
     echo "Unknown Option: " $1
     echo "Execute wsmanage help or wsmanage ?"
