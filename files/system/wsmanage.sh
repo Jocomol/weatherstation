@@ -3,7 +3,7 @@ if [ $# -ge 1 ]
 then
   if [ $1 == 'configapply' ]
   then
-    python3 /var/weatherstation/systen/configApply.py
+    python3 /var/weatherstation/system/configApply.py
   elif [ $1 == 'help' ] || [ $1 == "?" ]
   then
     echo "Weatherstation Help"
@@ -18,7 +18,7 @@ then
     echo "-----------------------------------------------------------------------------------------------------"
   elif [ $1 == 'showconfig' ]
   then
-    python3 /var/weatherstation/system/shwoconfig.py 
+    python3 /var/weatherstation/system/shwoconfig.py
   elif [ $1 == 'measure' ]
   then
     if [ "$EUID" -ne 0 ];
