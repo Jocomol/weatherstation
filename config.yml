@@ -4,12 +4,24 @@
 ##################################
 #DO ONLY CHANGE THE VALUES AND NOT THE KEYS
 Config:
-  - intervalMeasurementTime:
-    day: 0
+  - time_measureInterval:
+    weekday: Null
+    month: Null
+    day: Null
     hour: 0
     minute: 5
 
-  - updateInterval:
+  - time_updateInterval:
+    weekday: Null
+    month: Null
     day: 14
-    hour: 0
+    hour: 1
     minute: 0
+
+##REFERENCE
+# time_*
+# weekday: Null for none. 0 = Sun 1 = Mon, ..., 6=Sat, 7=Sun
+# month: Null for none. 1-12
+# day: Null for none. 1-31
+# hour: Null for none. 0-23
+# minute: Null for none. 0-59

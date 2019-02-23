@@ -22,24 +22,32 @@ with open("/var/weatherstation/config.yml", 'r') as stream:
         logger.error("Error occured appling the config " + exc)
 
 # Cronjob
-# intervalMeasurementTime:
-measurement_job = crontab.new(
+# time_measureInterval:
+time_measurement-job = crontab.new(
     command="python3 /var/weatherstation/scripts/wsControl.py")
-measurement_job.day.every(yamlconfig["Config"][0]["day"])
+time_measurement-job.dow.on(yamlconfig["Config"][0]["weekday"])
+time_measurement-job.month.during(yamlconfig["Config"][0]["month"])
+time_measurement-job.day.every(yamlconfig["Config"][0]["day"])
+time_measurement-job.hour.every(yamlconfig["Config"][0]["hour"])
+time_measurement-job.minute.every(yamlconfig["Config"][0]["minute"])
+config_array.append(yamlconfig["Config"][0]["weekday"])
+config_array.append(yamlconfig["Config"][0]["month"])
 config_array.append(yamlconfig["Config"][0]["day"])
-measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
 config_array.append(yamlconfig["Config"][0]["hour"])
-measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
 config_array.append(yamlconfig["Config"][0]["minute"])
 
 # updateInterval
-update_job = crontab.new(
+time_update-job = crontab.new(
     command="bash /var/weatherstation/system/updateWS.sh")
-update_job.day.every(yamlconfig["Config"][1]["day"])
+time_update-job.dow.on(yamlconfig["Config"][0]["weekday"])
+time_update-job.month.during(yamlconfig["Config"][0]["month"])
+time_update-job.day.every(yamlconfig["Config"][0]["day"])
+time_update-job.hour.every(yamlconfig["Config"][0]["hour"])
+time_update-job.minute.every(yamlconfig["Config"][0]["minute"])
+config_array.append(yamlconfig["Config"][1]["weekday"])
+config_array.append(yamlconfig["Config"][1]["month"])
 config_array.append(yamlconfig["Config"][1]["day"])
-update_job.hour.every(yamlconfig["Config"][1]["hour"])
 config_array.append(yamlconfig["Config"][1]["hour"])
-update_job.minute.every(yamlconfig["Config"][1]["minute"])
 config_array.append(yamlconfig["Config"][1]["minute"])
 
 crontab.write()
@@ -48,13 +56,17 @@ logger.info("Config applied")
 # Write the config into the database
 cursor.execute("""
     insert into config (
-        intervalMeasurementTime_day,
-        intervalMeasurementTime_hour,
-        intervalMeasurementTime_minute,
-        updateInterval_day,
-        updateInterval_hour,
-        updateInterval_minute
+        time_measureInterval_weekday,
+        time_measureInterval_month,
+        time_measureInterval_day,
+        time_measureInterval_hour,
+        time_measureInterval_minute,
+        time_updateInterval_weekday,
+        time_updateInterval_month,
+        time_updateInterval_day,
+        time_updateInterval_hour,
+        time_updateInterval_minute
         )
-    VALUES (?,?,?,?,?,?)""", config_array)
+    VALUES (?,?,?,?,?,?,?,?,?,?)""", config_array)
 connection.commit()
 connection.close()
