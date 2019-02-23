@@ -86,7 +86,7 @@ chmod -R 777 /var/weatherstation/
 python3 /var/weatherstation/system/configApply.py
 ##TODO wsmanage
 cp wsmanage.sh /usr/bin/wsmanage
-chmod +X  /usr/bin/wsmanage
+chmod 777 /usr/bin/wsmanage
 ##cleanup
 
 ##restart
