@@ -10,7 +10,7 @@ cursor = connection.cursor()
 
 # Read out config from database
 cursor.execute("""SELECT * FROM config WHERE
-    ID = (SELECT MAX(ID)  FROM TABLE);""")
+    ID = (SELECT MAX(ID) FROM config);""")
 config = cursor.fetchone()
 print(config)
 connection.close()
