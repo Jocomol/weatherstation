@@ -84,9 +84,9 @@ cp files/system/updateWS.sh /var/weatherstation/system
 cp files/system/showconfig.py /var/weatherstation/system
 chmod -R 777 /var/weatherstation/
 python3 /var/weatherstation/system/configApply.py
-##TODO wsmanage
 cp files/system/wsmanage.sh /usr/bin/wsmanage
 chmod 777 /usr/bin/wsmanage
+
 ##cleanup
 
 ##restart
