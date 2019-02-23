@@ -8,7 +8,7 @@ Config:
     weekday: Null
     month: Null
     day: Null
-    hour: 0
+    hour: Null
     minute: 5
 
   - time_updateInterval:
@@ -16,9 +16,10 @@ Config:
     month: Null
     day: 14
     hour: 1
-    minute: 0
+    minute: Null
 
 ##REFERENCE
+# Do not write 0 Write Null instead
 # time_*
 # weekday: Null for none. 0 = Sun 1 = Mon, ..., 6=Sat, 7=Sun
 # month: Null for none. 1-12
