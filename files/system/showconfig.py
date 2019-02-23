@@ -11,5 +11,5 @@ cursor = connection.cursor()
 # Read out config from database
 cursor.execute('SELECT max(id) FROM config')
 max_id = cursor.fetchone()[0]
-config = cursor.execute('SELECT * FROM config WHERE ID = ?', max_id)
+config = cursor.execute('SELECT * FROM config WHERE ID = ?', str(max_id))
 print(config)

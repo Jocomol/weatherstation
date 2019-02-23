@@ -16,7 +16,4 @@ bash install.sh -t
 python3 /var/weatherstation/scripts/wsControl.py
 wsmanage showconfig
 wsmanage measure
-wsmanage help
-wsmanage ?
-wsmanage configapply
 echo "Done"
