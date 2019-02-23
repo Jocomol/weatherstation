@@ -46,13 +46,13 @@ config_array.append(yamlconfig["Config"][0]["minute"])
 time_update_job = crontab.new(
     command="bash /var/weatherstation/system/updateWS.sh")
 if yamlconfig["Config"][1]["weekday"] is not None:
-    time_measurement_job.dow.on(yamlconfig["Config"][1]["weekday"])
+    time_update_job.dow.on(yamlconfig["Config"][1]["weekday"])
 if yamlconfig["Config"][1]["month"] is not None:
-    time_measurement_job.month.during(yamlconfig["Config"][1]["month"])
+    time_update_job.month.during(yamlconfig["Config"][1]["month"])
 if yamlconfig["Config"][1]["day"] is not None:
-    time_measurement_job.day.every(yamlconfig["Config"][1]["day"])
+    time_update_job.day.every(yamlconfig["Config"][1]["day"])
 if yamlconfig["Config"][1]["hour"] is not None:
-    time_measurement_job.hour.every(yamlconfig["Config"][1]["hour"])
+    time_update_job.hour.every(yamlconfig["Config"][1]["hour"])
 if yamlconfig["Config"][1]["minute"] is not None:
     time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
 
