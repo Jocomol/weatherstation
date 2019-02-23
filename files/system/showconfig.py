@@ -27,3 +27,5 @@ print("- month: " + str(config[7]))
 print("- day: " + str(config[8]))
 print("- hour: " + str(config[9]))
 print("- minute: " + str(config[10]))
+
+logger.info("showed Config")
