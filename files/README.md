@@ -1,6 +1,6 @@
-# Jocomol/wheaterstation/files
+# Jocomol/weatherstation/files
 
-This folder contains additional files used by the Wheaterstation that where created by the creator of the Wheaterstation.
+This folder contains additional files used by the weatherstation that where created by the creator of the weatherstation.
 
 ## Files
 

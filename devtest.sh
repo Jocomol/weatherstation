@@ -13,6 +13,6 @@ fi
 
 bash development/cleanup.sh
 bash install.sh -t
-python3 /var/wheaterstation/scripts/wsControl.py
-python3 /var/wheaterstation/system/configApply.py
+python3 /var/weatherstation/scripts/wsControl.py
+python3 /var/weatherstation/system/configApply.py
 echo "Done"

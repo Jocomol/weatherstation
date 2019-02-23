@@ -11,6 +11,6 @@ then
         exit
 fi
 
-rm -r /var/wheaterstation &> /dev/null
-rm /var/log/wheaterstation.log  &> /dev/null
+rm -r /var/weatherstation &> /dev/null
+rm /var/log/weatherstation.log  &> /dev/null
 echo "Cleaned"

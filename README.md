@@ -1,4 +1,4 @@
-# Jocomol/wheaterstation/
+# Jocomol/weatherstation/
 
 ## Files
 
@@ -9,7 +9,7 @@ A standart gitignore file.
 **Currently Unused**
 
 ### devtest.sh
-The script to test the whole Wheaterstation. Will be moved to wheaterstation/development later.
+The script to test the whole weatherstation. Will be moved to weatherstation/development later.
 
 ### install.sh
-The installation script of the whole Wheaterstation.
+The installation script of the whole weatherstation.

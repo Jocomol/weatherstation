@@ -7,11 +7,11 @@ import pytemperature
 import logging
 
 
-class Controller():  # Controlls everything and manages the Wheaterstation
+class Controller():  # Controlls everything and manages the weatherstation
 
     def __init__(self):  # Creates all the Objects
         logging.basicConfig(
-            filename='/var/log/wheaterstation.log',
+            filename='/var/log/weatherstation.log',
             level=logging.DEBUG)
         self.name = "Controller"
         self.controller_logger = logging.getLogger("Controller")

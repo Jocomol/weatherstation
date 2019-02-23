@@ -23,19 +23,19 @@ echo "No software installed because of Testing"
 echo "Software installed"
 
 ##making file structure
-mkdir /var/wheaterstation
-mkdir /var/wheaterstation/data
-mkdir /var/wheaterstation/scripts
-mkdir /var/wheaterstation/hardware
-mkdir /var/wheaterstation/frontend
-mkdir /var/wheaterstation/log
-mkdir /var/wheaterstation/system
-ln -s /sys/bus/w1/devices/28-000005d2e508 /var/wheaterstation/hardware/ds1820 #Thermometer
-ln -s /var/www/html /var/wheaterstation/frontend
-touch /var/wheaterstation/data/wheater.db
-rm /var/log/wheaterstation.log &> /dev/null
-touch /var/log/wheaterstation.log
-ln -s /var/log/ /var/wheaterstation/log
+mkdir /var/weatherstation
+mkdir /var/weatherstation/data
+mkdir /var/weatherstation/scripts
+mkdir /var/weatherstation/hardware
+mkdir /var/weatherstation/frontend
+mkdir /var/weatherstation/log
+mkdir /var/weatherstation/system
+ln -s /sys/bus/w1/devices/28-000005d2e508 /var/weatherstation/hardware/ds1820 #Thermometer
+ln -s /var/www/html /var/weatherstation/frontend
+touch /var/weatherstation/data/wheater.db
+rm /var/log/weatherstation.log &> /dev/null
+touch /var/log/weatherstation.log
+ln -s /var/log/ /var/weatherstation/log
 
 ##configuring hardware
 ##ds1820 (Thermometer)
@@ -54,14 +54,14 @@ echo "gpiopin=4" >> /boot/config.txt
 ##configuring software
 
 ##Database
-sqlite3 /var/wheaterstation/data/wheater.db < install_script/createDB.sql
+sqlite3 /var/weatherstation/data/wheater.db < install_script/createDB.sql
 
 ##scrLib
 pip3 install pytemperature python-crontab pyyaml
-cp scrLib/wsControl.py /var/wheaterstation/scripts
-cp scrLib/thermo.py /var/wheaterstation/scripts
-cp scrLib/dbConnector.py /var/wheaterstation/scripts
-cp scrLib/wsPart.py /var/wheaterstation/scripts
+cp scrLib/wsControl.py /var/weatherstation/scripts
+cp scrLib/thermo.py /var/weatherstation/scripts
+cp scrLib/dbConnector.py /var/weatherstation/scripts
+cp scrLib/wsPart.py /var/weatherstation/scripts
 
 ##making ssh keys
 echo "Making ssh keys"
@@ -77,11 +77,12 @@ fi
 echo "The ssh keys are stored in /home/pi/.ssh"
 
 ##system
-cp config.yml /var/wheaterstation
+cp config.yml /var/weatherstation
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
-cp files/system/configApply.py /var/wheaterstation/system
-cp files/system/updateWS.sh /var/wheaterstation/system
+cp files/system/configApply.py /var/weatherstation/system
+cp files/system/updateWS.sh /var/weatherstation/system
 
+chmod -R 777 /var/weatherstation/
 ##cleanup
 
 ##restart

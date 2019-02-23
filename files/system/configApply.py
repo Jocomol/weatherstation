@@ -6,15 +6,15 @@ import sqlite3
 
 # Setup
 logging.basicConfig(
-    filename='/var/log/wheaterstation.log', level=logging.DEBUG)
+    filename='/var/log/weatherstation.log', level=logging.DEBUG)
 logger = logging.getLogger("Config")
 crontab = CronTab(user='root')
-connection = sqlite3.connect('/var/wheaterstation/data/wheater.db')
+connection = sqlite3.connect('/var/weatherstation/data/wheater.db')
 cursor = connection.cursor()
 config_array = []
 
 # Load configfile
-with open("/var/wheaterstation/config.yml", 'r') as stream:
+with open("/var/weatherstation/config.yml", 'r') as stream:
     try:
         yamlconfig = yaml.load(stream)
     except yaml.YAMLError as exc:
@@ -24,7 +24,7 @@ with open("/var/wheaterstation/config.yml", 'r') as stream:
 # Cronjob
 # intervalMeasurementTime:
 measurement_job = crontab.new(
-    command="python3 /var/wheaterstation/scripts/wsControl.py")
+    command="python3 /var/weatherstation/scripts/wsControl.py")
 measurement_job.day.every(yamlconfig["Config"][0]["day"])
 config_array.append(yamlconfig["Config"][0]["day"])
 measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
@@ -34,7 +34,7 @@ config_array.append(yamlconfig["Config"][0]["minute"])
 
 # updateInterval
 update_job = crontab.new(
-    command="bash /var/wheaterstation/system/updateWS.sh")
+    command="bash /var/weatherstation/system/updateWS.sh")
 update_job.day.every(yamlconfig["Config"][1]["day"])
 config_array.append(yamlconfig["Config"][1]["day"])
 update_job.hour.every(yamlconfig["Config"][1]["hour"])
