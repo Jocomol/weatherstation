@@ -23,13 +23,13 @@ with open("/var/weatherstation/config.yml", 'r') as stream:
 
 # Cronjob
 # time_measureInterval:
-time_measurement-job = crontab.new(
+time_measurement_job = crontab.new(
     command="python3 /var/weatherstation/scripts/wsControl.py")
-time_measurement-job.dow.on(yamlconfig["Config"][0]["weekday"])
-time_measurement-job.month.during(yamlconfig["Config"][0]["month"])
-time_measurement-job.day.every(yamlconfig["Config"][0]["day"])
-time_measurement-job.hour.every(yamlconfig["Config"][0]["hour"])
-time_measurement-job.minute.every(yamlconfig["Config"][0]["minute"])
+time_measurement_job.dow.on(yamlconfig["Config"][0]["weekday"])
+time_measurement_job.month.during(yamlconfig["Config"][0]["month"])
+time_measurement_job.day.every(yamlconfig["Config"][0]["day"])
+time_measurement_job.hour.every(yamlconfig["Config"][0]["hour"])
+time_measurement_job.minute.every(yamlconfig["Config"][0]["minute"])
 config_array.append(yamlconfig["Config"][0]["weekday"])
 config_array.append(yamlconfig["Config"][0]["month"])
 config_array.append(yamlconfig["Config"][0]["day"])
@@ -37,13 +37,13 @@ config_array.append(yamlconfig["Config"][0]["hour"])
 config_array.append(yamlconfig["Config"][0]["minute"])
 
 # updateInterval
-time_update-job = crontab.new(
+time_update_job = crontab.new(
     command="bash /var/weatherstation/system/updateWS.sh")
-time_update-job.dow.on(yamlconfig["Config"][0]["weekday"])
-time_update-job.month.during(yamlconfig["Config"][0]["month"])
-time_update-job.day.every(yamlconfig["Config"][0]["day"])
-time_update-job.hour.every(yamlconfig["Config"][0]["hour"])
-time_update-job.minute.every(yamlconfig["Config"][0]["minute"])
+time_update_job.dow.on(yamlconfig["Config"][0]["weekday"])
+time_update_job.month.during(yamlconfig["Config"][0]["month"])
+time_update_job.day.every(yamlconfig["Config"][0]["day"])
+time_update_job.hour.every(yamlconfig["Config"][0]["hour"])
+time_update_job.minute.every(yamlconfig["Config"][0]["minute"])
 config_array.append(yamlconfig["Config"][1]["weekday"])
 config_array.append(yamlconfig["Config"][1]["month"])
 config_array.append(yamlconfig["Config"][1]["day"])
