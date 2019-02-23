@@ -51,7 +51,6 @@ echo "#1-Wire ds1820" >> /boot/config.txt
 echo "dtoverlay=w1-gpio" >> /boot/config.txt
 echo "gpiopin=4" >> /boot/config.txt
 
-
 ##configuring software
 ##Database
 sqlite3 /var/weatherstation/data/wheater.db < install_script/createDB.sql
@@ -88,6 +87,7 @@ cp files/system/wsmanage.sh /usr/bin/wsmanage
 chmod 777 /usr/bin/wsmanage
 
 ##cleanup
+crontab -r
 
 ##restart
 echo "Now Restarting"
