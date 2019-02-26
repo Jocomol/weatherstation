@@ -56,7 +56,7 @@ echo "gpiopin=4" >> /boot/config.txt
 sqlite3 /var/weatherstation/data/wheater.db < install_script/createDB.sql
 
 ##scrLib
-pip3 install pytemperature python-crontab pyyaml
+pip3 install -r requirements.txt
 cp scrLib/wsControl.py /var/weatherstation/scripts
 cp scrLib/thermo.py /var/weatherstation/scripts
 cp scrLib/dbConnector.py /var/weatherstation/scripts

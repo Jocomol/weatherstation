@@ -1,0 +1,4 @@
+PyYAML==3.12
+logger==1.4
+pycodestyle==2.5.0
+python-crontab==2.3.6
