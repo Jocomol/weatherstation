@@ -32,7 +32,7 @@ mkdir /var/weatherstation/log
 mkdir /var/weatherstation/system
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/weatherstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/weatherstation/frontend
-touch /var/weatherstation/data/wheater.db
+touch /var/weatherstation/data/weather.db
 rm /var/log/weatherstation.log &> /dev/null
 touch /var/log/weatherstation.log
 chmod 777 /var/log/weatherstation.log
@@ -53,7 +53,7 @@ echo "gpiopin=4" >> /boot/config.txt
 
 ##configuring software
 ##Database
-sqlite3 /var/weatherstation/data/wheater.db < install_script/createDB.sql
+sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
 
 ##scrLib
 pip3 install -r requirements.txt
