@@ -9,7 +9,7 @@ logging.basicConfig(
     filename='/var/log/weatherstation.log', level=logging.DEBUG)
 logger = logging.getLogger("Config")
 crontab = CronTab(user='root')
-connection = sqlite3.connect('/var/weatherstation/data/wheater.db')
+connection = sqlite3.connect('/var/weatherstation/data/weather.db')
 cursor = connection.cursor()
 config_array = []
 

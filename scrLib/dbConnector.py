@@ -9,7 +9,7 @@ class DBConnector(WsPart):  # Writes into the database very simple
 
     # Inserts the mmeasurement data into the database
     def database_insert_measurement(self, measurement):
-        connection = sqlite3.connect('/var/weatherstation/data/wheater.db')
+        connection = sqlite3.connect('/var/weatherstation/data/weather.db')
         cursor = connection.cursor()
         cursor.execute("""
             insert into measurement (
