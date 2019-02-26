@@ -12,6 +12,7 @@ crontab = CronTab(user='root')
 connection = sqlite3.connect('/var/weatherstation/data/weather.db')
 cursor = connection.cursor()
 config_array = []
+yaml.warnings({'YAMLLoadWarning': False})
 
 # Load configfile
 with open("/var/weatherstation/config.yml", 'r') as stream:
