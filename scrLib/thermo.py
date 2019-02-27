@@ -1,21 +1,30 @@
 from wsPart import WsPart
 import os
 import sys
+from w1thermsensor import W1ThermSensor
+import datetime
 
 
-class Thermo(WsPart):  # Reads out the file of the data from the Thermometer
-    functional = False  # Functionality will be added later
-    # file = "/home/joco/Documents/testing.txt"
-    # File where the thermometer writes the data in
-    file = '/sys/bus/w1/devices/28-00000833e8ff/w1_slave'
+class Thermo(WsPart, W1ThermSensor):
 
-    def __init__(self, name, logger):
-        super().__init__(name, logger)  # Calls the wsPart constructor
+    def __init__(self, logger):
+        WsPart.__init__(self, logger)  # Calls the wsPart constructor
+        W1ThermSensor.__init__(
+                self,
+                W1ThermSensor.THERM_SENSOR_DS18B20,
+                "00000833e8ff")
 
-    def read_measurement(self):  # Reads out the file defined as self.file
-        with open(self.file) as fileobject:
-            fileobject = open(self.file)
-            filecontent = fileobject.read()
-            fileobject.close()
-            self.logger.info("Completed Meassuring")
-        return filecontent
+    def read_measurement(self):
+        self.logger.info("Meassuring started")
+        meassuered_data = [str(datetime.datetime.now().isoformat())]
+        meassuered_temps = (self.get_temperatures([
+                    self.DEGREES_C,
+                    self.DEGREES_F,
+                    self.KELVIN]))
+        meassuered_data.append(meassuered_temps[0])
+        meassuered_data.append(meassuered_temps[1])
+        meassuered_data.append(meassuered_temps[2])
+        self.logger.info(
+            "Meassured Temperatures: " +
+            str(meassuered_data))
+        return meassuered_data

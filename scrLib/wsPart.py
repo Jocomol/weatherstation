@@ -2,9 +2,5 @@
 class WsPart(object):
 
     # Every wsPart has a name and a refrence to the logger
-    def __init__(self, name, logger):
+    def __init__(self, logger):
         self.logger = logger
-        self.name = name
-
-    def getName(self):
-        return self.name
