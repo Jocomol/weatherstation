@@ -12,4 +12,5 @@ then
 fi
 
 bash install.sh -t
+sudo wsmanage configapply
 echo "Done"
