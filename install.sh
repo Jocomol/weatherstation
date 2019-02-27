@@ -45,7 +45,7 @@ ln -s /var/www/html /var/weatherstation/frontend
 if  [ "$1" != "-t" ];
 then
   touch /var/weatherstation/data/weather.db
-else
+fi
 rm /var/log/weatherstation.log &> /dev/null
 touch /var/log/weatherstation.log
 chmod 777 /var/log/weatherstation.log
