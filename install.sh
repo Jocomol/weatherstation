@@ -25,8 +25,8 @@ echo "Software installed"
 if  [ "$1" == "-t" ];
 then
   mkdir /tmp/tempweatherstation
-  mv /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
-  mv /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
+  cp /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
 fi
 
 ## Delete old files
@@ -94,9 +94,8 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 ##system
 if  [ "$1" == "-t" ];
 then
-  mv /tmp/tempweatherstation/weather.db /var/weatherstation/data/
-  mv /tmp/tempweatherstation/config.yml /var/weatherstation/
-  rmdir /tmp/tempweatherstation
+  cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/
+  cp /tmp/tempweatherstation/config.yml /var/weatherstation/
 else
   cp config.yml /var/weatherstation
 fi
