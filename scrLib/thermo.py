@@ -10,9 +10,9 @@ class Thermo(WsPart, W1ThermSensor):
     def __init__(self, logger):
         WsPart.__init__(self, logger)  # Calls the wsPart constructor
         W1ThermSensor.__init__(
-                self, 
+                self,
                 W1ThermSensor.THERM_SENSOR_DS18B20,
-                "000005d2e508")
+                "00000833e8ff")
 
     def read_measurement(self):
         self.logger.info("Meassuring started")
