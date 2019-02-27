@@ -40,7 +40,7 @@ mkdir /var/weatherstation/hardware
 mkdir /var/weatherstation/frontend
 mkdir /var/weatherstation/log
 mkdir /var/weatherstation/system
-ln -s /sys/bus/w1/devices/28-000005d2e508 /var/weatherstation/hardware/ds18b20 #Thermometer
+ln -s /sys/bus/w1/devices/28-00000833e8ff /var/weatherstation/hardware/ds18b20 #Thermometer
 ln -s /var/www/html /var/weatherstation/frontend
 if  [ "$1" != "-t" ];
 then

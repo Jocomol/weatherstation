@@ -21,7 +21,7 @@ class Thermo(WsPart, W1ThermSensor):
                     self.DEGREES_C,
                     self.DEGREES_F,
                     self.KELVIN]))
-        self.thermometer_logger.info(
+        self.logger.info(
             "Meassured Temperatures: " +
             str(meassuered_data))
         return meassuered_data
