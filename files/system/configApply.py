@@ -10,14 +10,14 @@ try:
         filename='/var/log/weatherstation.log', level=logging.DEBUG)
     logger = logging.getLogger("Config")
     crontab = CronTab(user='root')
-        connection = sqlite3.connect('/var/weatherstation/data/weather.db')
-        cursor = connection.cursor()
-        config_array = []
-        yaml.warnings({'YAMLLoadWarning': False})
+    connection = sqlite3.connect('/var/weatherstation/data/weather.db')
+    cursor = connection.cursor()
+    config_array = []
+    yaml.warnings({'YAMLLoadWarning': False})
 except OSError:
     print(colorful.red("Root priviledges needed for this command."))
     print(colorful.red("Please execute: ") +
-        colorful.italic("sudo wsmanage configapply"))
+                colorful.italic("sudo wsmanage configapply"))
     logger.error("User tried opening cron tab without root priviledges")
 
 
