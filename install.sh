@@ -94,9 +94,9 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 ##system
 if  [ "$1" == "-t" ];
 then
-  mkdir /tmp/tempweatherstation
-  mv /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
-  mv /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+  mv /tmp/tempweatherstation /var/weatherstation/data/weather.db &> /dev/null
+  mv /tmp/tempweatherstation /var/weatherstation/config.yml &> /dev/null
+  rmdir /tmp/tempweatherstation
 else
   cp config.yml /var/weatherstation
 fi
