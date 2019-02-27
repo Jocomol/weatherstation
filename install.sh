@@ -24,13 +24,13 @@ echo "Software installed"
 
 if  [ "$1" == "-t" ];
 then
-  mkdir /tmp/tempweatherstation
-  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation
-  cp /var/weatherstation/config.yml  /tmp/tempweatherstation
+  mkdir /tmp/tempweatherstation &> /dev/null
+  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
+  cp /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
 fi
 
 ## Delete old files
-rm -r /var/weatherstation
+rm -r /var/weatherstation &> /dev/null
 
 ##making file structure
 mkdir /var/weatherstation
@@ -94,10 +94,10 @@ echo "The ssh keys are stored in /home/pi/.ssh"
 ##system
 if  [ "$1" == "-t" ] && [ -f /tmp/tempweatherstation/config.yml ];
 then
-  cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/
-  cp /tmp/tempweatherstation/config.yml /var/weatherstation/
+  cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/ &> /dev/null
+  cp /tmp/tempweatherstation/config.yml /var/weatherstation/ &> /dev/null
 else
-  cp config.yml /var/weatherstation
+  cp config.yml /var/weatherstation &> /dev/null
 fi
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
 cp files/system/configApply.py /var/weatherstation/system

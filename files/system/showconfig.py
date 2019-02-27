@@ -1,5 +1,6 @@
 import sqlite3
 import logging
+import colorful
 
 # Setup
 logging.basicConfig(
@@ -13,19 +14,19 @@ cursor.execute("""SELECT * FROM config WHERE
     ID = (SELECT MAX(ID) FROM config);""")
 config = cursor.fetchone()
 connection.close()
-print("Current Config:")
-print("time_measureInterval:")
-print("- weekday: " + str(config[1]))
-print("- month: " + str(config[2]))
-print("- day: " + str(config[3]))
-print("- hour: " + str(config[4]))
-print("- minute: " + str(config[5]))
+print(colorful.bold_underlined_green("Current Config:"))
+print(colorful.bold_green("time_measureInterval:"))
+print(colorful.bold("- weekday: ") + str(config[1]))
+print(colorful.bold("- month: ") + str(config[2]))
+print(colorful.bold("- day: ") + str(config[3]))
+print(colorful.bold("- hour: ") + str(config[4]))
+print(colorful.bold("- minute: ") + str(config[5]))
 print("")
-print("time_updateInterval:")
-print("- weekday: " + str(config[6]))
-print("- month: " + str(config[7]))
-print("- day: " + str(config[8]))
-print("- hour: " + str(config[9]))
-print("- minute: " + str(config[10]))
+print(colorful.bold_green("time_updateInterval:"))
+print(colorful.bold("- weekday: ") + str(config[6]))
+print(colorful.bold("- month: ") + str(config[7]))
+print(colorful.bold("- day: ") + str(config[8]))
+print(colorful.bold("- hour: ") + str(config[9]))
+print(colorful.bold("- minute: ") + str(config[10]))
 
 logger.info("showed Config")

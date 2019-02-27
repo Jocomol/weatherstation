@@ -19,7 +19,7 @@ with open("/var/weatherstation/config.yml", 'r') as stream:
     try:
         yamlconfig = yaml.load(stream)
     except yaml.YAMLError as exc:
-        print(exc)
+        print(colorful.bold_red(exc))
         logger.error("Error occured appling the config " + exc)
 
 try:
@@ -52,8 +52,8 @@ try:
     if yamlconfig["Config"][1]["minute"] is not None:
         time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
 except IOError:
-    print("""Not enough priviledges to change cronjobs.
-            please start wsmanage configapply again with root privileges""")
+    print(colorful.bold_red("""Not enough priviledges to change cronjobs.
+            please start wsmanage configapply again with root privileges"""))
 
 config_array.append(yamlconfig["Config"][0]["weekday"])
 config_array.append(yamlconfig["Config"][0]["month"])
