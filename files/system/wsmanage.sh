@@ -8,7 +8,7 @@ then
   then
     echo "Weatherstation Help"
     echo "-----------------------------------------------------------------------------------------------------"
-    echo "| wsmanage configapply                      | Apply the config in /var/weatherstation/config.yml.   |"
+    echo "| sudo wsmanage configapply                 | Apply the config in /var/weatherstation/config.yml.   |"
     echo "| wsmanage help                             | Show this help.                                       |"
     echo "| wsmanage ?                                | Shows this help.                                      |"
     echo "| wsmanage showconfig                       | Shows the current applied config.                     |"

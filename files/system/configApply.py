@@ -5,14 +5,21 @@ import logging
 import sqlite3
 
 # Setup
-logging.basicConfig(
-    filename='/var/log/weatherstation.log', level=logging.DEBUG)
-logger = logging.getLogger("Config")
-crontab = CronTab(user='root')
-connection = sqlite3.connect('/var/weatherstation/data/weather.db')
-cursor = connection.cursor()
-config_array = []
-yaml.warnings({'YAMLLoadWarning': False})
+try:
+    logging.basicConfig(
+        filename='/var/log/weatherstation.log', level=logging.DEBUG)
+        logger = logging.getLogger("Config")
+        crontab = CronTab(user='root')
+        connection = sqlite3.connect('/var/weatherstation/data/weather.db')
+        cursor = connection.cursor()
+        config_array = []
+        yaml.warnings({'YAMLLoadWarning': False})
+except OSError:
+    print(colorful.red("Root priviledges needed for this command."))
+    print(colorful.red("Please execute: "))
+    print(colorful.italic("sudo wsmanage configapply"))
+    logger.error("User tried opening cron tab without root priviledges" )
+
 
 # Load configfile
 with open("/var/weatherstation/config.yml", 'r') as stream:
