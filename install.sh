@@ -53,17 +53,15 @@ ln -s /var/log/ /var/weatherstation/log
 
 ##configuring hardware
 ##ds1820 (Thermometer)
-#lsmod
-#modprobe wire
-#modprobe w1-gpio
-#modprobe w1-therm
-#echo "wire" >> /etc/modules
-#echo "w1-gpio" >> /etc/modules
-#echo "w1-therm" >> /etc/modules
-#echo "#1-Wire ds1820" >> /boot/config.txt
-#echo "dtoverlay=w1-gpio" >> /boot/config.txt
+lsmod
+modprobe wire
+modprobe w1-gpio
+modprobe w1-therm
+echo "wire" >> /etc/modules
+echo "w1-gpio" >> /etc/modules
+echo "w1-therm" >> /etc/modules
+echo "#1-Wire ds1820" >> /boot/config.txt
 echo "dtoverlay=w1-gpio,gpiopin=4" >> /boot/config.txt
-#echo "gpiopin=4" >> /boot/config.txt
 
 ##configuring software
 ##Database
