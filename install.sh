@@ -26,7 +26,7 @@ if  [ "$1" == "-t" ];
 then
   mkdir /tmp/tempweatherstation
   cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation
-  cp /var/weatherstation/config.yml  /tmp/tempweatherstation 
+  cp /var/weatherstation/config.yml  /tmp/tempweatherstation
 fi
 
 ## Delete old files
@@ -92,7 +92,7 @@ fi
 echo "The ssh keys are stored in /home/pi/.ssh"
 
 ##system
-if  [ "$1" == "-t" ];
+if  [ "$1" == "-t" ] && [ -f /tmp/tempweatherstation/config.yml ];
 then
   cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/
   cp /tmp/tempweatherstation/config.yml /var/weatherstation/
