@@ -4,8 +4,8 @@ from wsPart import WsPart
 
 class DBConnector(WsPart):  # Writes into the database very simple
 
-    def __init__(self, name, logger):
-        super().__init__(name, logger)
+    def __init__(self, logger):
+        super().__init__(logger)
 
     # Inserts the mmeasurement data into the database
     def database_insert_measurement(self, measurement):
