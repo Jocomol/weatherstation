@@ -14,7 +14,7 @@ cursor.execute("""SELECT * FROM config WHERE
     ID = (SELECT MAX(ID) FROM config);""")
 config = cursor.fetchone()
 connection.close()
-print(colorful.bold_underlined_red("Current Config:"))
+print(colorful.bold_underlined("Current Config:"))
 print(colorful.bold_green("time_measureInterval:"))
 print(colorful.bold("- weekday: ") + str(config[1]))
 print(colorful.bold("- month: ") + str(config[2]))
