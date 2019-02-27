@@ -25,8 +25,8 @@ echo "Software installed"
 if  [ "$1" == "-t" ];
 then
   mkdir /tmp/tempweatherstation
-  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
-  cp /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation
+  cp /var/weatherstation/config.yml  /tmp/tempweatherstation 
 fi
 
 ## Delete old files
