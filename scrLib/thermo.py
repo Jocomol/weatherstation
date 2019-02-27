@@ -13,7 +13,7 @@ class Thermo(WsPart, W1ThermSensor):
 
     def read_measurement(self):
         self.logger.info("Meassuring started")
-        meassuered_data = [str(datetime.datetime.now.().isoformat())]
+        meassuered_data = [str(datetime.datetime.now().isoformat())]
         meassuered_data.append(self.get_temperatures([
                     self.DEGREES_C,
                     self.DEGREES_F,

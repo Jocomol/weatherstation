@@ -26,7 +26,7 @@ class Controller():  # Controlls everything and manages the weatherstation
         data_array = self.thermo.read_measurement()
         self.db_connector.database_insert_measurement(data_array)
 
+
 if __name__ == "__main__":
     controller = Controller()
     controller.main()
-#
