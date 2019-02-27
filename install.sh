@@ -22,6 +22,16 @@ echo "No software installed because of Testing"
 ##
 echo "Software installed"
 
+if  [ "$1" == "-t" ];
+then
+  mkdir /tmp/tempweatherstation
+  mv /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
+  mv /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+fi
+
+## Delete old files
+rm -r /var/weatherstation
+
 ##making file structure
 mkdir /var/weatherstation
 mkdir /var/weatherstation/data
@@ -32,7 +42,10 @@ mkdir /var/weatherstation/log
 mkdir /var/weatherstation/system
 ln -s /sys/bus/w1/devices/28-000005d2e508 /var/weatherstation/hardware/ds1820 #Thermometer
 ln -s /var/www/html /var/weatherstation/frontend
-touch /var/weatherstation/data/weather.db
+if  [ "$1" != "-t" ];
+then
+  touch /var/weatherstation/data/weather.db
+else
 rm /var/log/weatherstation.log &> /dev/null
 touch /var/log/weatherstation.log
 chmod 777 /var/log/weatherstation.log
@@ -53,7 +66,10 @@ echo "gpiopin=4" >> /boot/config.txt
 
 ##configuring software
 ##Database
-sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
+if  [ "$1" != "-t" ];
+then
+        sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
+fi
 
 ##scrLib
 pip3 install -r requirements.txt
@@ -76,7 +92,14 @@ fi
 echo "The ssh keys are stored in /home/pi/.ssh"
 
 ##system
-cp config.yml /var/weatherstation
+if  [ "$1" == "-t" ];
+then
+  mkdir /tmp/tempweatherstation
+  mv /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
+  mv /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+else
+  cp config.yml /var/weatherstation
+fi
 cp files/motd/* /etc/update-motd.d/ &> /dev/null
 cp files/system/configApply.py /var/weatherstation/system
 cp files/system/updateWS.sh /var/weatherstation/system

@@ -11,7 +11,5 @@ then
 	exit
 fi
 
-bash development/cleanup.sh
 bash install.sh -t
-wsmanage measure
 echo "Done"
