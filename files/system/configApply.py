@@ -52,7 +52,7 @@ try:
     if yamlconfig["Config"][1]["minute"] is not None:
         time_update_job.minute.every(yamlconfig["Config"][1]["minute"])
 except IOError:
-    print("""Not enough privliedges to change cronjobs.
+    print("""Not enough priviledges to change cronjobs.
             please start wsmanage configapply again with root privileges""")
 
 config_array.append(yamlconfig["Config"][0]["weekday"])

@@ -1,3 +1,5 @@
 pyyaml>=4.2b1
 logger==1.4
 python-crontab==2.3.6
+w1thermsensor==1.1.2
+colorful==0.5.0
