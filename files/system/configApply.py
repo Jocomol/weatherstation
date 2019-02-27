@@ -16,8 +16,8 @@ try:
     yaml.warnings({'YAMLLoadWarning': False})
 except OSError:
     print(colorful.red("Root priviledges needed for this command."))
-    print(colorful.red("Please execute: ") +
-            colorful.italic("sudo wsmanage configapply"))
+    print(colorful.red("Please execute: "))
+    print(colorful.italic("sudo wsmanage configapply"))
     logger.error("User tried opening cron tab without root priviledges")
 
 
