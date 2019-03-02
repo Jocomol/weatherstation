@@ -118,3 +118,4 @@ then
 else
         init 6
 fi
+echo "Hallo Mila"
