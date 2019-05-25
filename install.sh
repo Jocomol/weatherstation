@@ -19,7 +19,15 @@ then
     echo "No software installed because of Testing"
 else
     apt update
-    apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y
+    apt dist-upgrade
+    #scrLib
+    apt install python3 python3-pip -y
+    #data
+    apt install sqlite3 -y
+    # Web
+    apt install apache2 -y
+    #system
+    apt install tree figlet -y
 fi
 
 echo "Software installed"
@@ -32,6 +40,8 @@ then
 fi
 
 ## SSH
+service ssh start
+systemctl enable ssh
 ssh-add keys/joes_public_key
 
 ## Delete old files
