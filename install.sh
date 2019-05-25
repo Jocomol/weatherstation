@@ -19,23 +19,23 @@ then
     echo "No software installed because of Testing"
 else
     apt update
-    apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+    apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y
 fi
 
 echo "Software installed"
 
 if  [ "$1" == "-t" ];
 then
-  mkdir /tmp/tempweatherstation &> /dev/null
-  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation &> /dev/null
-  cp /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
+  mkdir /tmp/tempweatherstation
+  cp /var/weatherstation/data/weather.db  /tmp/tempweatherstation
+  cp /var/weatherstation/config.yml  /tmp/tempweatherstation
 fi
 
 ## SSH
 ssh-add keys/joes_public_key
 
 ## Delete old files
-rm -r /var/weatherstation &> /dev/null
+rm -r /var/weatherstation
 
 ##making file structure
 mkdir /var/weatherstation
@@ -51,7 +51,7 @@ if  [ "$1" != "-t" ];
 then
   touch /var/weatherstation/data/weather.db
 fi
-rm /var/log/weatherstation.log &> /dev/null
+rm /var/log/weatherstation.log
 touch /var/log/weatherstation.log
 chmod 777 /var/log/weatherstation.log
 ln -s /var/log/ /var/weatherstation/log
@@ -85,12 +85,12 @@ cp scrLib/wsPart.py /var/weatherstation/scripts
 ##system
 if  [ "$1" == "-t" ] && [ -f /tmp/tempweatherstation/config.yml ];
 then
-  cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/ &> /dev/null
-  cp /tmp/tempweatherstation/config.yml /var/weatherstation/ &> /dev/null
+  cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/
+  cp /tmp/tempweatherstation/config.yml /var/weatherstation/
 else
-  cp config.yml /var/weatherstation &> /dev/null
+  cp config.yml /var/weatherstation
 fi
-cp files/motd/* /etc/update-motd.d/ &> /dev/null
+cp files/motd/* /etc/update-motd.d/
 cp files/system/configApply.py /var/weatherstation/system
 cp files/system/updateWS.sh /var/weatherstation/system
 cp files/system/showconfig.py /var/weatherstation/system
