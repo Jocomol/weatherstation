@@ -12,7 +12,7 @@ class Thermo(WsPart, W1ThermSensor):
         W1ThermSensor.__init__(
                 self,
                 W1ThermSensor.THERM_SENSOR_DS18B20,
-                "00000833e8ff")
+                "00000833e8ff") ##TODO
 
     def read_measurement(self):
         self.logger.info("Meassuring started")

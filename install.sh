@@ -11,15 +11,17 @@ then
 	exit
 fi
 
-##raspi-config
+##TODO raspi-config
 
-##install software
 echo "Installing required software"
-##TESTING
-echo "No software installed because of Testing"
-#apt update
-#apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
-##
+if  [ "$1" == "-t" ];
+then
+    echo "No software installed because of Testing"
+else
+    apt update
+    apt install python3 python3-pip tree openssh-server sqlite3 apache2 php7.2 php7.2-sqlite3 figlet -y &> /dev/null
+fi
+
 echo "Software installed"
 
 if  [ "$1" == "-t" ];
@@ -40,7 +42,7 @@ mkdir /var/weatherstation/hardware
 mkdir /var/weatherstation/frontend
 mkdir /var/weatherstation/log
 mkdir /var/weatherstation/system
-ln -s /sys/bus/w1/devices/28-00000833e8ff /var/weatherstation/hardware/ds18b20 #Thermometer
+ln -s /sys/bus/w1/devices /var/weatherstation/hardware #Thermometer
 ln -s /var/www/html /var/weatherstation/frontend
 if  [ "$1" != "-t" ];
 then
@@ -67,7 +69,7 @@ echo "dtoverlay=w1-gpio,gpiopin=4" >> /boot/config.txt
 ##Database
 if  [ "$1" != "-t" ];
 then
-        sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
+  sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
 fi
 
 ##scrLib
@@ -76,19 +78,6 @@ cp scrLib/wsControl.py /var/weatherstation/scripts
 cp scrLib/thermo.py /var/weatherstation/scripts
 cp scrLib/dbConnector.py /var/weatherstation/scripts
 cp scrLib/wsPart.py /var/weatherstation/scripts
-
-##making ssh keys
-echo "Making ssh keys"
-if [ ! -f /home/pi/.ssh/authorized_keys ]; then
-	mkdir /home/pi/.ssh
-	chmod 700 /home/pi/.ssh
-	cd /home/pi/.ssh
-	touch authorized_keys
-	chmod 600 authorized_keys
-	ssh-keygen -f '/home/pi/.ssh/id_rsa' -N '' &> /dev/null
-	cat home/pi/.ssh/id_rsa.pub >> /home/pi/.ssh/authorized_keys
-fi
-echo "The ssh keys are stored in /home/pi/.ssh"
 
 ##system
 if  [ "$1" == "-t" ] && [ -f /tmp/tempweatherstation/config.yml ];
@@ -118,4 +107,3 @@ then
 else
         init 6
 fi
-echo "Hallo Mila"
