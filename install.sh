@@ -31,6 +31,9 @@ then
   cp /var/weatherstation/config.yml  /tmp/tempweatherstation &> /dev/null
 fi
 
+## SSH
+ssh-add keys/joes_public_key
+
 ## Delete old files
 rm -r /var/weatherstation &> /dev/null
 
