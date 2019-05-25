@@ -7,16 +7,16 @@
 ##Check if sudo
 if [ "$EUID" -ne 0 ];
 then
-        echo "Please run as root"
+        echo "[ERROR] Please run as root"
 	exit
 fi
 
 ##TODO raspi-config
 
-echo "Installing required software"
+echo "[INFO] Installing required software"
 if  [ "$1" == "-t" ];
 then
-    echo "No software installed because of Testing"
+    echo "[WARNING] No software installed because of Testing"
 else
     apt update
     apt dist-upgrade
@@ -28,9 +28,8 @@ else
     apt install apache2 -y
     #system
     apt install tree figlet -y
+    echo "Software installed"
 fi
-
-echo "Software installed"
 
 if  [ "$1" == "-t" ];
 then
@@ -113,7 +112,7 @@ chmod 777 /usr/bin/wsmanage
 crontab -r
 
 ##restart
-echo "Now Restarting"
+echo "[INFO] Now Restarting"
 if  [ $# -ge 1 ] && [ "$1" == "-t" ];
 then
         echo "[Testing] SCRIPT DONE"
