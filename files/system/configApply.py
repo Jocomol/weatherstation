@@ -1,4 +1,3 @@
-# WIP
 from crontab import CronTab
 import yaml
 import logging

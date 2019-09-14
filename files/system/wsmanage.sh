@@ -4,7 +4,7 @@ then
   if [ $1 == 'configapply' ]
   then
     python3 /var/weatherstation/system/configApply.py
-  elif [ $1 == 'help' ] || [ $1 == "?" ]
+elif [ $1 == 'help' ] || [ $1 == "?" ]
   then
     echo "Weatherstation Help"
     echo "-----------------------------------------------------------------------------------------------------"
@@ -16,10 +16,10 @@ then
     echo "-----------------------------------------------------------------------------------------------------"
     echo "| For more info visit https://github.com/Jocomol/weatherstation                                     |"
     echo "-----------------------------------------------------------------------------------------------------"
-  elif [ $1 == 'showconfig' ]
+elif [ $1 == 'showconfig' ]
   then
     python3 /var/weatherstation/system/showconfig.py
-  elif [ $1 == 'measure' ]
+elif [ $1 == 'measure' ]
   then
     python3 /var/weatherstation/scripts/wsControl.py
   else

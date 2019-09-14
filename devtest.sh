@@ -7,8 +7,8 @@ echo "This Script is for development only"
 #Check if sudo
 if [ "$EUID" -ne 0 ];
 then
-        echo "Please run as root"
-	exit
+  echo "Please run as root"
+  exit
 fi
 
 bash install.sh -t

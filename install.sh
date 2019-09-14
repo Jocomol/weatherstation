@@ -7,8 +7,8 @@
 ##Check if sudo
 if [ "$EUID" -ne 0 ];
 then
-        echo "[ERROR] Please run as root"
-	exit
+  echo "[ERROR] Please run as root"
+  exit
 fi
 
 ##TODO raspi-config
@@ -16,19 +16,19 @@ fi
 echo "[INFO] Installing required software"
 if  [ "$1" == "-t" ];
 then
-    echo "[WARNING] No software installed because of Testing"
+  echo "[WARNING] No software installed because of Testing"
 else
-    apt update
-    apt dist-upgrade
-    #scrLib
-    apt install python3 python3-pip -y
-    #data
-    apt install sqlite3 -y
-    # Web
-    apt install apache2 -y
-    #system
-    apt install tree figlet -y
-    echo "Software installed"
+  apt update
+  apt dist-upgrade
+  #scrLib
+  apt install python3 python3-pip -y
+  #data
+  apt install sqlite3 -y
+  # Web
+  apt install apache2 -y
+  #system
+  apt install tree figlet -y
+  echo "Software installed"
 fi
 
 if  [ "$1" == "-t" ];
@@ -107,6 +107,7 @@ chmod -R 777 /var/weatherstation/
 python3 /var/weatherstation/system/configApply.py
 cp files/system/wsmanage.sh /usr/bin/wsmanage
 chmod 777 /usr/bin/wsmanage
+echo "weatherstation" > /etc/hostname
 
 ##cleanup
 crontab -r
@@ -115,7 +116,7 @@ crontab -r
 echo "[INFO] Now Restarting"
 if  [ $# -ge 1 ] && [ "$1" == "-t" ];
 then
-        echo "[Testing] SCRIPT DONE"
+  echo "[Testing] SCRIPT DONE"
 else
-        init 6
+  init 6
 fi
