@@ -1,17 +1,13 @@
 #!/bin/bash
-##################################
-#Author: Joe Meier a.k.a Jocomol #
-#Contact: joelmeier08@gmail.com  #
-##################################
+#Author: Joe Meier a.k.a Jocomol
+#Contact: joelmeier08@gmail.com
 
-##Check if sudo
+#Check if sudo
 if [ "$EUID" -ne 0 ];
 then
   echo "[ERROR] Please run as root"
   exit
 fi
-
-##TODO raspi-config
 
 echo "[INFO] Installing required software"
 if  [ "$1" == "-t" ];
@@ -19,7 +15,7 @@ then
   echo "[WARNING] No software installed because of Testing"
 else
   apt update
-  apt dist-upgrade
+  apt dist-upgrade -y
   #scrLib
   apt install python3 python3-pip -y
   #data
@@ -38,15 +34,17 @@ then
   cp /var/weatherstation/config.yml  /tmp/tempweatherstation
 fi
 
-## SSH
+# SSH
 service ssh start
 systemctl enable ssh
-ssh-add keys/joes_public_key
+ssh-add keys/id_rsa.pub
+sed 's/UsePAM no/UsePAM yes/g' /etc/ssh/sshd_config
+sed 's/#PrintMotd no/PrintMotd no/g' /etc/ssh/sshd_config
 
-## Delete old files
+# Delete old files
 rm -r /var/weatherstation
 
-##making file structure
+#making file structure
 mkdir /var/weatherstation
 mkdir /var/weatherstation/data
 mkdir /var/weatherstation/scripts
@@ -62,11 +60,11 @@ then
 fi
 rm /var/log/weatherstation.log
 touch /var/log/weatherstation.log
-chmod 777 /var/log/weatherstation.log
+chmod 774 /var/log/weatherstation.log
 ln -s /var/log/ /var/weatherstation/log
 
-##configuring hardware
-##ds1820 (Thermometer)
+#configuring hardware
+#ds1820 (Thermometer)
 lsmod
 modprobe wire
 modprobe w1-gpio
@@ -77,21 +75,21 @@ echo "w1-therm" >> /etc/modules
 echo "#1-Wire ds1820" >> /boot/config.txt
 echo "dtoverlay=w1-gpio,gpiopin=4" >> /boot/config.txt
 
-##configuring software
-##Database
+#configuring software
+#Database
 if  [ "$1" != "-t" ];
 then
   sqlite3 /var/weatherstation/data/weather.db < install_script/createDB.sql
 fi
 
-##scrLib
+#scrLib
 pip3 install -r requirements.txt
 cp scrLib/wsControl.py /var/weatherstation/scripts
 cp scrLib/thermo.py /var/weatherstation/scripts
 cp scrLib/dbConnector.py /var/weatherstation/scripts
 cp scrLib/wsPart.py /var/weatherstation/scripts
 
-##system
+#system
 if  [ "$1" == "-t" ] && [ -f /tmp/tempweatherstation/config.yml ];
 then
   cp /tmp/tempweatherstation/weather.db /var/weatherstation/data/
@@ -103,16 +101,17 @@ cp files/motd/* /etc/update-motd.d/
 cp files/system/configApply.py /var/weatherstation/system
 cp files/system/updateWS.sh /var/weatherstation/system
 cp files/system/showconfig.py /var/weatherstation/system
-chmod -R 777 /var/weatherstation/
+chmod -R 774 /var/weatherstation/
 python3 /var/weatherstation/system/configApply.py
 cp files/system/wsmanage.sh /usr/bin/wsmanage
-chmod 777 /usr/bin/wsmanage
+chmod +x /usr/bin/wsmanage
+
 echo "weatherstation" > /etc/hostname
 
-##cleanup
+#cleanup
 crontab -r
 
-##restart
+#restart
 echo "[INFO] Now Restarting"
 if  [ $# -ge 1 ] && [ "$1" == "-t" ];
 then
